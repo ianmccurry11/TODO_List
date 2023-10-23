@@ -1,0 +1,3 @@
+/node_modules
+# remove all node_modules folders
+**/node_modules
