@@ -19,6 +19,5 @@ npm start
 # cd express-backend
 # touch .env
 # Format of .env file
-MONGODB_USER=<your mongo username>
-MONGDB_PASSWORD=<your mongo password>
+MONGODB_URI= mongodb+srv://<user>:<password>@todolistdb.gdfbauz.mongodb.net/?retryWrites=true&w=majority
 ```
