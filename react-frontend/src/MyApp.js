@@ -1,6 +1,7 @@
 // src/MyApp.js
 import Table from "./Table";
 import Form from './Form';
+import RegistrationForm from './Authentication/Registration';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ function MyApp() {
       let id = characters[index]['_id'];
       makeDeleteCallCharacter(id).then(result => {
         console.log(result);
-        if (result.status == 204) {
+        if (result.status === 204) {
           const updated = characters.filter((character, i) => {
             return i !== index
           });
@@ -79,6 +80,7 @@ function MyApp() {
     
   return (
     <div className="container">
+      <RegistrationForm />
       <Table characterData={characters} 
         removeCharacter={removeOneCharacter} />
       <Form handleSubmit={updateList} />

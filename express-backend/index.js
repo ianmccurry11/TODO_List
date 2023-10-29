@@ -1,9 +1,11 @@
 import express from "express";
 import cors from 'cors';
+import jwt from "jsonwebtoken";
 // import userServices from "./models/user-services.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import bcrypt from "bcrypt";
+import auth from "./authentication/auth.js";
 import dotenv from 'dotenv';
 const port = process.env.PORT || 8000;
 dotenv.config();
@@ -46,6 +48,64 @@ app.get("/users/:id", async (req, res) => {
 //   if (savedUser) res.status(201).send(savedUser);
 //   else res.status(500).end();
 // });
+
+app.post("/login", (request, response) => {
+  // check if email exists
+  User.findOne({ username: request.body.username })
+
+    // if email exists
+    .then((user) => {
+      // compare the password entered and the hashed password found
+      console.log(user)
+      console.log(user.password)
+      bcrypt
+        .compare(request.body.password, user.password)
+
+        // if the passwords match
+        .then((passwordCheck) => {
+          console.log(passwordCheck,typeof(passwordCheck))
+          // check if password matches
+          if(passwordCheck === false) {
+            return response.status(400).send({
+              message: "Passwords does not match",
+              error,
+            });
+          }
+
+          //   create JWT token
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              username: user.username,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: "24h" }
+          );
+
+          //   return success response
+          response.status(200).send({
+            message: "Login Successful",
+            username: user.username,
+            token,
+          });
+        })
+        // catch error if password does not match
+        .catch((error) => {
+          response.status(400).send({
+            message: "Passwords does not match",
+            error,
+          });
+        });
+    })
+    // catch error if email does not exist
+    .catch((e) => {
+      response.status(404).send({
+        message: "usernname not found",
+        e,
+      });
+    });
+});
+
 
 app.post("/register", (request, response) => {
   // hash the password
@@ -96,8 +156,9 @@ app.delete('/users/:id', async(req, res) => {
     }
 });
 
-
-
+app.get("/auth-endpoint", auth, (request, response) => {
+  response.json({ message: "You are authorized to access me" });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
