@@ -1,6 +1,6 @@
-#Project Backend Setup
+# Project Backend Setup
 
-##Install dependencies
+## Install dependencies
 ``` 
 # cd express-backend
 # used to install all dependencies
