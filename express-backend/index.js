@@ -1,10 +1,15 @@
 import express from "express";
 import cors from 'cors';
-import userServices from "./models/user-services.js";
+// import userServices from "./models/user-services.js";
+import User from "./models/user_model/user.js";
+import db from "./models/database.js";
+import bcrypt from "bcrypt";
 import dotenv from 'dotenv';
 const port = process.env.PORT || 8000;
 dotenv.config();
 const app = express();
+const db_connection = db.connect_to_mongo_db();
+
 
 app.use(cors());
 app.use(express.json());
@@ -35,11 +40,50 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-app.post("/users", async (req, res) => {
-  const user = req.body;
-  const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
+// app.post("/users", async (req, res) => {
+//   const user = req.body;
+//   const savedUser = await userServices.addUser(user);
+//   if (savedUser) res.status(201).send(savedUser);
+//   else res.status(500).end();
+// });
+
+app.post("/register", (request, response) => {
+  // hash the password
+  console.log(request)
+  console.log(request.body.password, request.body.username)
+  bcrypt
+    .hash(request.body.password, 10)
+    .then((hashedPassword) => {
+      // create a new user instance and collect the data
+      console.log(hashedPassword)
+      let user = new User({
+        username: request.body.username,
+        password: hashedPassword,
+      });
+      console.log(user)
+      // save the new user
+      user.save()
+        // return success if the new user is added to the database successfully
+        .then((result) => {
+          response.status(201).send({
+            message: "User Created Successfully",
+            result,
+          });
+        })
+        // catch error if the new user wasn't added successfully to the database
+        .catch((error) => {
+          response.status(500).send({
+            message: "Error creating user",
+            error,
+          });
+        });
+    })
+    .catch((e) => {
+      response.status(500).send({
+        message: "Password was not hashed successfully",
+        e:e.message,
+      });
+    });
 });
 
 app.delete('/users/:id', async(req, res) => {
@@ -51,6 +95,8 @@ app.delete('/users/:id', async(req, res) => {
         res.status(204).end();
     }
 });
+
+
 
 
 app.listen(port, () => {
