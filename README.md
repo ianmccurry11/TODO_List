@@ -1,5 +1,7 @@
 As of right now, TODO_List uses the same settings for ESLint and Prettier for both the frontend and the backend.
 
+TODO_List uses the Airbnb styleguide (found here: https://airbnb.io/javascript/react/)
+
 Suggested extensions (for VSCode):
 1. ESlint extension
 2. Prettier extension
