@@ -63,7 +63,6 @@ app.post("/login", (request, response) => {
 
         // if the passwords match
         .then((passwordCheck) => {
-          console.log(passwordCheck,typeof(passwordCheck))
           // check if password matches
           if(passwordCheck === false) {
             return response.status(400).send({
