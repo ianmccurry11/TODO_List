@@ -4,13 +4,10 @@ dotenv.config();
 
 async function connect_to_mongo_db() {
   return mongoose
-    .connect(
-        process.env.MONGODB_URI,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    )
+    .connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
     .then(() => {
       console.log("Successfully connected to MongoDB Atlas!");
     })
@@ -25,4 +22,4 @@ let db_connection = connect_to_mongo_db();
 export default {
   db_connection,
   connect_to_mongo_db,
-}
+};

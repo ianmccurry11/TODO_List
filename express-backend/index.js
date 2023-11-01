@@ -1,23 +1,22 @@
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import jwt from "jsonwebtoken";
 // import userServices from "./models/user-services.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import bcrypt from "bcrypt";
 import auth from "./authentication/auth.js";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 const port = process.env.PORT || 8000;
 dotenv.config();
 const app = express();
 const db_connection = db.connect_to_mongo_db();
 
-
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 app.get("/users", async (req, res) => {
@@ -56,15 +55,15 @@ app.post("/login", (request, response) => {
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
-      console.log(user)
-      console.log(user.password)
+      console.log(user);
+      console.log(user.password);
       bcrypt
         .compare(request.body.password, user.password)
 
         // if the passwords match
         .then((passwordCheck) => {
           // check if password matches
-          if(passwordCheck === false) {
+          if (passwordCheck === false) {
             return response.status(400).send({
               message: "Passwords does not match",
               error,
@@ -105,23 +104,23 @@ app.post("/login", (request, response) => {
     });
 });
 
-
 app.post("/register", (request, response) => {
   // hash the password
-  console.log(request)
-  console.log(request.body.password, request.body.username)
+  console.log(request);
+  console.log(request.body.password, request.body.username);
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {
       // create a new user instance and collect the data
-      console.log(hashedPassword)
+      console.log(hashedPassword);
       let user = new User({
         username: request.body.username,
         password: hashedPassword,
       });
-      console.log(user)
+      console.log(user);
       // save the new user
-      user.save()
+      user
+        .save()
         // return success if the new user is added to the database successfully
         .then((result) => {
           response.status(201).send({
@@ -140,19 +139,19 @@ app.post("/register", (request, response) => {
     .catch((e) => {
       response.status(500).send({
         message: "Password was not hashed successfully",
-        e:e.message,
+        e: e.message,
       });
     });
 });
 
-app.delete('/users/:id', async(req, res) => {
-    let id = req.params['id']; //or req.params.id
-    let successfully_deleted = await userServices.removeUserById(id);
-    if(!successfully_deleted) {
-        res.status(404).end()
-    } else {
-        res.status(204).end();
-    }
+app.delete("/users/:id", async (req, res) => {
+  let id = req.params["id"]; //or req.params.id
+  let successfully_deleted = await userServices.removeUserById(id);
+  if (!successfully_deleted) {
+    res.status(404).end();
+  } else {
+    res.status(204).end();
+  }
 });
 
 app.get("/auth-endpoint", auth, (request, response) => {
@@ -160,6 +159,6 @@ app.get("/auth-endpoint", auth, (request, response) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-    console.log(`Example app listening at ${process.env.MONGODB_URI}`);
+  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at ${process.env.MONGODB_URI}`);
 });
