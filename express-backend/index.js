@@ -1,10 +1,10 @@
 import express from "express";
 import cors from 'cors';
 import userServices from "./models/user-services.js";
-
+import dotenv from 'dotenv';
+const port = process.env.PORT || 8000;
+dotenv.config();
 const app = express();
-const port = 8000;
-
 
 app.use(cors());
 app.use(express.json());
@@ -52,6 +52,8 @@ app.delete('/users/:id', async(req, res) => {
     }
 });
 
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at ${process.env.MONGODB_URI}`);
 });

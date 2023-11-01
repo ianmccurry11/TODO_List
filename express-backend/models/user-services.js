@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 import userModel from "./user.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/users", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
