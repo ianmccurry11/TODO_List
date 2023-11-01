@@ -2,7 +2,9 @@
 import Table from "./Table";
 import Form from './Form';
 import RegistrationForm from './Authentication/Registration';
+import LoginForm from './Authentication/Login';
 import React, {useState, useEffect} from 'react';
+import {BrowserRouter,Route,Routes} from "react-router-dom";
 import axios from 'axios';
 
 function MyApp() {
@@ -81,6 +83,7 @@ function MyApp() {
   return (
     <div className="container">
       <RegistrationForm />
+      <LoginForm />
       <Table characterData={characters} 
         removeCharacter={removeOneCharacter} />
       <Form handleSubmit={updateList} />
