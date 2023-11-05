@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 async function connect_to_mongo_db() {
@@ -17,7 +18,7 @@ async function connect_to_mongo_db() {
     });
 }
 
-let db_connection = connect_to_mongo_db();
+const db_connection = connect_to_mongo_db();
 
 export default {
   db_connection,

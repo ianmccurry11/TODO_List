@@ -8,7 +8,7 @@
 //       trim: true,
 //     },
 //     job: {
-//       type: String,
+//       type: String,c
 //       required: true,
 //       trim: true,
 //       validate(value) {

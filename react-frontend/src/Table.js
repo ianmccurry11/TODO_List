@@ -1,5 +1,5 @@
 // src/Table.js
-import React from "react";
+import React from 'react';
 
 // src/Table.js
 function TableHeader() {
@@ -14,29 +14,27 @@ function TableHeader() {
   );
 }
 
-function TableBody(props) {
-  const rows = props.characterData.map((row, index) => {
-    return (
-      <tr key={index}>
-        <td>{row._id}</td>
-        <td>{row.name}</td>
-        <td>{row.job}</td>
-        <td>
-          <button onClick={() => props.removeCharacter(index)}>Delete</button>
-        </td>
-      </tr>
-    );
-  });
+function TableBody({ characterData, removeCharacter }) {
+  const rows = characterData.map(({ _id, name, job }) => (
+    <tr key={_id}>
+      <td>{_id}</td>
+      <td>{name}</td>
+      <td>{job}</td>
+      <td>
+        <button type="button" onClick={() => removeCharacter(_id)}>Delete</button>
+      </td>
+    </tr>
+  ));
   return <tbody>{rows}</tbody>;
 }
 // src/Table.js
-function Table(props) {
+function Table({ characterData, removeCharacter }) {
   return (
     <table>
       <TableHeader />
       <TableBody
-        characterData={props.characterData}
-        removeCharacter={props.removeCharacter}
+        characterData={characterData}
+        removeCharacter={removeCharacter}
       />
     </table>
   );

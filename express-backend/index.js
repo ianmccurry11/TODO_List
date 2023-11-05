@@ -2,15 +2,16 @@ import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 // import userServices from "./models/user-services.js";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
-import bcrypt from "bcrypt";
 import auth from "./authentication/auth.js";
-import dotenv from "dotenv";
+
 const port = process.env.PORT || 8000;
 dotenv.config();
 const app = express();
-const db_connection = db.connect_to_mongo_db();
+db.connect_to_mongo_db();
 
 app.use(cors());
 app.use(express.json());
@@ -19,27 +20,27 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/users", async (req, res) => {
-  const name = req.query["name"];
-  const job = req.query["job"];
-  try {
-    const result = await userServices.getUsers(name, job);
-    res.send({ users_list: result });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("An error ocurred in the server.");
-  }
-});
+// app.get("/users", async (req, res) => {
+//   const { name } = req.query;
+//   const { job } = req.query;
+//   try {
+//     const result = await userServices.getUsers(name, job);
+//     res.send({ users_list: result });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("An error ocurred in the server.");
+//   }
+// });
 
-app.get("/users/:id", async (req, res) => {
-  const id = req.params["id"];
-  const result = await userServices.findUserById(id);
-  if (result === undefined || result === null)
-    res.status(404).send("Resource not found.");
-  else {
-    res.send({ users_list: result });
-  }
-});
+// app.get("/users/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const result = await userServices.findUserById(id);
+//   if (result === undefined || result === null)
+//     res.status(404).send("Resource not found.");
+//   else {
+//     res.send({ users_list: result });
+//   }
+// });
 
 // app.post("/users", async (req, res) => {
 //   const user = req.body;
@@ -55,8 +56,6 @@ app.post("/login", (request, response) => {
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
-      console.log(user);
-      console.log(user.password);
       bcrypt
         .compare(request.body.password, user.password)
 
@@ -66,7 +65,6 @@ app.post("/login", (request, response) => {
           if (passwordCheck === false) {
             return response.status(400).send({
               message: "Passwords does not match",
-              error,
             });
           }
 
@@ -77,11 +75,11 @@ app.post("/login", (request, response) => {
               username: user.username,
             },
             "RANDOM-TOKEN",
-            { expiresIn: "24h" }
+            { expiresIn: "24h" },
           );
 
           //   return success response
-          response.status(200).send({
+          return response.status(200).send({
             message: "Login Successful",
             username: user.username,
             token,
@@ -106,18 +104,14 @@ app.post("/login", (request, response) => {
 
 app.post("/register", (request, response) => {
   // hash the password
-  console.log(request);
-  console.log(request.body.password, request.body.username);
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {
       // create a new user instance and collect the data
-      console.log(hashedPassword);
-      let user = new User({
+      const user = new User({
         username: request.body.username,
         password: hashedPassword,
       });
-      console.log(user);
       // save the new user
       user
         .save()
@@ -144,15 +138,15 @@ app.post("/register", (request, response) => {
     });
 });
 
-app.delete("/users/:id", async (req, res) => {
-  let id = req.params["id"]; //or req.params.id
-  let successfully_deleted = await userServices.removeUserById(id);
-  if (!successfully_deleted) {
-    res.status(404).end();
-  } else {
-    res.status(204).end();
-  }
-});
+// app.delete("/users/:id", async (req, res) => {
+//   const { id } = req.params; // or req.params.id
+//   const successfullyDeleted = await userServices.removeUserById(id);
+//   if (!successfullyDeleted) {
+//     res.status(404).end();
+//   } else {
+//     res.status(204).end();
+//   }
+// });
 
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });

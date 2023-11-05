@@ -14,5 +14,10 @@
         "sourceType": "module"
     },
     "rules": {
+        "camelcase": "off",
+        "no-unused-vars": "warn",
+        "no-console": "off",
+        "no-underscore-dangle": "off",
+        "import/extensions": "off"
     }
 }
