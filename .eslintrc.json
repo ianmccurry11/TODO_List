@@ -9,5 +9,12 @@
         "sourceType": "module"
     },
     "rules": {
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "globalReturn": false,
+            "jsx": true
+        }
     }
 }
