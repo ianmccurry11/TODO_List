@@ -1,6 +1,7 @@
 // src/MyApp.js
 import Table from "./Table";
 import Form from "./Form";
+import Tasks from "./pages/Tasks";
 import RegistrationForm from "./Authentication/Registration";
 import LoginForm from "./Authentication/Login";
 import React, { useState, useEffect } from "react";
@@ -78,10 +79,12 @@ function MyApp() {
 
   return (
     <div className="container">
-      <RegistrationForm />
-      <LoginForm />
-      <Table characterData={characters} removeCharacter={removeOneCharacter} />
-      <Form handleSubmit={updateList} />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/tasks" element={<Tasks />} />
+                <Route index element={<LoginForm />} />
+              </Routes>
+            </BrowserRouter>
     </div>
   );
 }
