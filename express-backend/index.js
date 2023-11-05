@@ -9,6 +9,7 @@ import db from "./models/database.js";
 import auth from "./authentication/auth.js";
 
 const port = process.env.PORT || 8000;
+const SECRET_TOKEN_KEY = process.env.SECRET || "RANDOM-TOKEN";
 dotenv.config();
 const app = express();
 db.connect_to_mongo_db();
@@ -56,11 +57,13 @@ app.post("/login", (request, response) => {
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
+      console.log(user.password);
       bcrypt
         .compare(request.body.password, user.password)
 
         // if the passwords match
         .then((passwordCheck) => {
+          console.log(passwordCheck);
           // check if password matches
           if (passwordCheck === false) {
             return response.status(400).send({
@@ -74,8 +77,8 @@ app.post("/login", (request, response) => {
               userId: user._id,
               username: user.username,
             },
-            "RANDOM-TOKEN",
-            { expiresIn: "24h" },
+            SECRET_TOKEN_KEY,
+            { expiresIn: "3d" },
           );
 
           //   return success response
@@ -96,7 +99,7 @@ app.post("/login", (request, response) => {
     // catch error if email does not exist
     .catch((e) => {
       response.status(404).send({
-        message: "usernname not found",
+        message: "username not found",
         e,
       });
     });
@@ -117,8 +120,17 @@ app.post("/register", (request, response) => {
         .save()
         // return success if the new user is added to the database successfully
         .then((result) => {
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              username: user.username,
+            },
+            SECRET_TOKEN_KEY,
+            { expiresIn: "3d" },
+          );
           response.status(201).send({
             message: "User Created Successfully",
+            token,
             result,
           });
         })

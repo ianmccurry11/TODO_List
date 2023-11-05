@@ -19,5 +19,3 @@
 //   },
 //   { collection: "users_list" }
 // );
-
-// export default mongoose.model("User", UserSchema);

@@ -3,10 +3,8 @@ import axios from 'axios';
 import React, {
   useRef, useState, useEffect, useContext,
 } from 'react';
-import AuthContext from '../context/AuthProvider';
 
 function Login() {
-  const { setAuth } = useContext(AuthContext);
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -25,6 +23,7 @@ function Login() {
       .post('http://localhost:8000/login', user)
       .then((result) => {
         setLoggedIn(true);
+        console.log(result);
       })
       .catch((error) => {
         setLoggedIn(false);
