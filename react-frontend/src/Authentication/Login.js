@@ -1,33 +1,32 @@
-/* eslint-disable react/jsx-filename-extension */
 import axios from 'axios';
-import React, {
-  useRef, useState, useEffect, useContext,
-} from 'react';
+import { useState, useContext } from 'react';
+import useAuthContext from '../context/AuthContext';
 
-function Login() {
+const Login = () => {
+  const authContext = useContext(useAuthContext);
+  const { dispatch } = authContext;
   const [user, setUser] = useState({
     username: '',
     password: '',
   });
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [register, setRegister] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'password') { setUser({ username: user.username, password: value }); } else setUser({ username: value, password: user.password });
   };
 
-  const submitForm = () => {
-    setUser({ username: '', password: '' });
+  const submitForm = async () => {
     axios
       .post('http://localhost:8000/login', user)
       .then((result) => {
-        setLoggedIn(true);
-        console.log(result);
+        localStorage.setItem('user', user.username);
+        localStorage.setItem('token', result.data.token);
+        console.log(localStorage.getItem('token'));
+        dispatch({ type: 'LOGIN', payload: { user: user.password, token: result.data.token } });
       })
       .catch((error) => {
-        setLoggedIn(false);
-        setLoginError(true);
+        console.log(error);
       });
   };
 
@@ -45,6 +44,7 @@ function Login() {
             onChange={handleChange}
           />
         </label>
+
         <label htmlFor="password">
           Password
           <input
@@ -55,9 +55,10 @@ function Login() {
             onChange={handleChange}
           />
         </label>
+
         <input type="button" value="Submit" onClick={submitForm} />
       </form>
     </>
   );
-}
+};
 export default Login;

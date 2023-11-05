@@ -1,8 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import useSignUp from '../hooks/useSignUp';
+import { useState, useContext } from 'react';
+import useAuthContext from '../context/AuthContext';
 
-function Registration() {
+const Registration = () => {
+  const authContext = useContext(useAuthContext);
+  const { dispatch } = authContext;
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -14,20 +16,18 @@ function Registration() {
     if (name === 'password') { setUser({ username: user.username, password: value }); } else setUser({ username: value, password: user.password });
   };
 
-  const submitForm = () => {
-    console.log(user);
-    alert(`You are submitting ${user.username} ${user.password}`);
-    setUser({ username: '', password: '' });
-    // axios
-    //   .post('http://localhost:8000/register', user)
-    //   .then((result) => {
-    //     console.log(result);
-    //     setRegister(true);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    useSignUp(user.username, user.password);
+  const submitForm = async () => {
+    axios
+      .post('http://localhost:8000/register', user)
+      .then((result) => {
+        localStorage.setItem('user', user.username);
+        localStorage.setItem('token', result.data.token);
+        console.log(localStorage.getItem('token'));
+        dispatch({ type: 'LOGIN', payload: { user: user.password, token: result.data.token } });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -60,5 +60,5 @@ function Registration() {
       </form>
     </>
   );
-}
+};
 export default Registration;

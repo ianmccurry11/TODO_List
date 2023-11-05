@@ -1,8 +1,11 @@
-import { createContext, useReducer, useMemo } from 'react';
+import {
+  createContext, useReducer, useMemo, useEffect,
+} from 'react';
 
 const AuthContext = createContext();
 
 export const AuthReducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -20,6 +23,12 @@ export const AuthReducer = (state, action) => {
 export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, { user: null });
 
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user });
+    }
+  }, []);
   const authContextValue = useMemo(() => ({
     user: state.user,
     dispatch,

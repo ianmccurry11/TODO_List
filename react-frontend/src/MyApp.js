@@ -6,19 +6,23 @@ import Table from './Table';
 import Form from './Form';
 import LoginForm from './Authentication/Login';
 import RegistrationForm from './Authentication/Registration';
-import { AuthContextProvider } from './context/AuthContext';
+import useAuthContext from './hooks/useAuthContext';
 
 function MyApp() {
+  const { user } = useAuthContext();
   // initialize characters to have empty state
   return (
-    <React.StrictMode>
-      <AuthContextProvider>
-        <RegistrationForm />
-        <LoginForm />
-        {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
-        {/* <Form handleSubmit={updateList} /> */}
-      </AuthContextProvider>
-    </React.StrictMode>
+    <>
+      <h1>
+        Hello,
+        {' '}
+        {user}
+      </h1>
+      <RegistrationForm />
+      <LoginForm />
+      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
+      {/* <Form handleSubmit={updateList} /> */}
+    </>
   );
 }
 
