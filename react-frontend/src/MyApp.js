@@ -7,22 +7,21 @@ import Form from './Form';
 import LoginForm from './Authentication/Login';
 import RegistrationForm from './Authentication/Registration';
 import useAuthContext from './hooks/useAuthContext';
+import AddTask from './Task/addTask';
 
 function MyApp() {
   const { user } = useAuthContext();
   // initialize characters to have empty state
   return (
-    <>
-      <h1>
-        Hello,
-        {' '}
-        {user}
-      </h1>
-      <RegistrationForm />
-      <LoginForm />
-      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
-      {/* <Form handleSubmit={updateList} /> */}
-    </>
+    <div className="container">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/registration" element={<RegistrationForm />} />
+          <Route path="/tasks" element={<AddTask />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
