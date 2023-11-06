@@ -1,21 +1,35 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-// const UserSchema = new mongoose.Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: true,
-//       trim: true,
-//     },
-//     job: {
-//       type: String,c
-//       required: true,
-//       trim: true,
-//       validate(value) {
-//         if (value.length < 2)
-//           throw new Error("Invalid job, must be at least 2 characters.");
-//       },
-//     },
-//   },
-//   { collection: "users_list" }
-// );
+const TasksSchema = new mongoose.Schema(
+  {
+    taskname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    priority: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: false,
+      trim: false,
+    },
+    deadline: {
+      type: Date,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+    },
+  },
+  { collection: "users_tasks" },
+);
+
+export default mongoose.model("Tasks", TasksSchema);
