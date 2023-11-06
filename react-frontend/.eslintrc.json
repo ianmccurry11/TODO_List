@@ -19,4 +19,5 @@
         "camelcase": "off",
         "react/function-component-definition": "off"
     }
+    
 }

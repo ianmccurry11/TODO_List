@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Table from './Table';
 import Form from './Form';
+import App from './App';
 import LoginForm from './Authentication/Login';
 import RegistrationForm from './Authentication/Registration';
 import useAuthContext from './hooks/useAuthContext';
