@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
-// import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import tasksServices from "./models/tasks-services.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import auth from "./authentication/auth.js";
@@ -21,17 +21,35 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.get("/users", async (req, res) => {
-//   const { name } = req.query;
-//   const { job } = req.query;
-//   try {
-//     const result = await userServices.getUsers(name, job);
-//     res.send({ users_list: result });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("An error ocurred in the server.");
-//   }
-// });
+app.get("/users", async (req, res) => {
+  const { taskName } = req.query;
+  const { priority } = req.query;
+  const { deadline } = req.query;
+  const { category } = req.query;
+  const { location } = req.query;
+  try {
+    let result = await tasksServices.getTasks(
+      taskName,
+      priority,
+      deadline,
+      category,
+      location,
+    );
+
+    // Check if returned result is an empty array, if so, then return a 404 error
+    if (Array.isArray(result) && result.length === 0) {
+      res.status(404).send("Damn. Resource not found.");
+    } else {
+      // If result is not an empty array, then return the result to the frontend
+      result = { users_task: result };
+      res.send(result);
+      console.log(result);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
 
 // app.get("/users/:id", async (req, res) => {
 //   const { id } = req.params;
@@ -48,6 +66,16 @@ app.get("/", (req, res) => {
 //   const savedUser = await userServices.addUser(user);
 //   if (savedUser) res.status(201).send(savedUser);
 //   else res.status(500).end();
+// });
+
+// app.delete("/users/:id", async (req, res) => {
+//   const { id } = req.params; // or req.params.id
+//   const successfullyDeleted = await userServices.removeUserById(id);
+//   if (!successfullyDeleted) {
+//     res.status(404).end();
+//   } else {
+//     res.status(204).end();
+//   }
 // });
 
 app.post("/login", (request, response) => {
@@ -149,16 +177,6 @@ app.post("/register", (request, response) => {
       });
     });
 });
-
-// app.delete("/users/:id", async (req, res) => {
-//   const { id } = req.params; // or req.params.id
-//   const successfullyDeleted = await userServices.removeUserById(id);
-//   if (!successfullyDeleted) {
-//     res.status(404).end();
-//   } else {
-//     res.status(204).end();
-//   }
-// });
 
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });

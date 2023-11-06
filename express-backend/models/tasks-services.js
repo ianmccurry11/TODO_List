@@ -1,39 +1,55 @@
-// import mongoose from "mongoose";
-// import userModel from "./user.js";
-// import dotenv from "dotenv";
+/* eslint-disable no-return-await */
+/* eslint-disable object-shorthand */
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import taskModel from "./tasks.js";
 
-// dotenv.config();
+dotenv.config();
 
-// // uncomment the following line to view mongoose debug messages
-// mongoose.set("debug", true);
+// uncomment the following line to view mongoose debug messages
+mongoose.set("debug", true);
 
-// mongoose
-//   .connect(process.env.MONGODB_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .catch((error) => console.log(error));
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((error) => console.log(error));
 
-// async function getUsers(name, job) {
-//   let result;
-//   if (name === undefined && job === undefined) {
-//     result = await userModel.find();
-//   } else if (name && !job) {
-//     result = await findUserByName(name);
-//   } else if (job && !name) {
-//     result = await findUserByJob(job);
-//   }
-//   return result;
-// }
+async function getTasks(taskName, priority, deadline, category, location) {
+  let result;
+  /* Only adding search functionality for no fields or one field at a time
+	Therefore, when calling this function, only search by one parameter at a time */
+  if (taskName && !priority && !deadline && !category && !location) {
+    return await taskModel.find({ taskName: taskName });
+  }
+  if (!taskName && priority && !deadline && !category && !location) {
+    return await taskModel.find({ priority: priority });
+  }
+  if (!taskName && !priority && deadline && !category && !location) {
+    return await taskModel.find({ deadline: deadline });
+  }
+  if (!taskName && !priority && !deadline && category && !location) {
+    return await taskModel.find({ category: category });
+  }
+  if (!taskName && !priority && !deadline && !category && location) {
+    return await taskModel.find({ location: location });
+  }
+  return await taskModel.find();
+}
 
-// async function findUserById(id) {
-//   try {
-//     return await userModel.findById(id);
-//   } catch (error) {
-//     console.log(error);
-//     return undefined;
-//   }
-// }
+async function findTaskById(id) {
+  try {
+    return await taskModel.findById(id);
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+/* Current plan: finishing task-services, adding an update function,
+added functionality to index.js, testing, fixing frontend so I can view if
+I messed up anything, then refactoring files that are unnecesary */
 
 // async function addUser(user) {
 //   try {
@@ -46,23 +62,20 @@
 //   }
 // }
 
-// async function findUserByName(name) {
-//   return await userModel.find({ name: name });
+// async function deleteUser(id) {
+//   try {
+//     const result = await userModel.findByIdAndDelete(id);
+//     return result;
+//   } catch (error) {
+//     console.log(error);
+//     return false;
+//   }
 // }
 
-// async function findUserByJob(job) {
-//   return await userModel.find({ job: job });
-// }
-
-// async function removeUserById(id) {
-//   return await userModel.findByIdAndDelete(id);
-// }
-
-// export default {
-//   addUser,
-//   getUsers,
-//   findUserById,
-//   findUserByName,
-//   findUserByJob,
-//   removeUserById
-// };
+export default {
+  getTasks,
+  findTaskById,
+  // addUser,
+  // getUsers,
+  // deleteUser,
+};
