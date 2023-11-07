@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/users", async (req, res) => {
+app.get("/tasks", async (req, res) => {
   const { taskName } = req.query;
   const { priority } = req.query;
   const { deadline } = req.query;
@@ -41,7 +41,7 @@ app.get("/users", async (req, res) => {
       res.status(404).send("Damn. Resource not found.");
     } else {
       // If result is not an empty array, then return the result to the frontend
-      result = { users_task: result };
+      result = { users_tasks: result };
       res.send(result);
       console.log(result);
     }
@@ -51,22 +51,24 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// app.get("/users/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const result = await userServices.findUserById(id);
-//   if (result === undefined || result === null)
-//     res.status(404).send("Resource not found.");
-//   else {
-//     res.send({ users_list: result });
-//   }
-// });
+app.get("/tasks/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await tasksServices.findTaskById(id);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
 
-// app.post("/users", async (req, res) => {
-//   const user = req.body;
-//   const savedUser = await userServices.addUser(user);
-//   if (savedUser) res.status(201).send(savedUser);
-//   else res.status(500).end();
-// });
+/* Need to connect to the frontend in order to produce new users. This should 
+technically work, but I can't test it until I get the frontend working. ESLint >:(  */
+app.post("/tasks", async (req, res) => {
+  const newTask = req.body;
+  const savedTask = await tasksServices.addTask(newTask);
+  if (savedTask) res.status(201).send(savedTask);
+  else res.status(500).end();
+});
 
 // app.delete("/users/:id", async (req, res) => {
 //   const { id } = req.params; // or req.params.id

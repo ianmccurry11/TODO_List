@@ -51,16 +51,16 @@ async function findTaskById(id) {
 added functionality to index.js, testing, fixing frontend so I can view if
 I messed up anything, then refactoring files that are unnecesary */
 
-// async function addUser(user) {
-//   try {
-//     const userToAdd = new userModel(user);
-//     const savedUser = await userToAdd.save();
-//     return savedUser;
-//   } catch (error) {
-//     console.log(error);
-//     return false;
-//   }
-// }
+async function addTask(task) {
+  try {
+    const taskToAdd = new taskModel(task);
+    const savedTask = await taskToAdd.save();
+    return savedTask;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 
 // async function deleteUser(id) {
 //   try {
@@ -75,7 +75,7 @@ I messed up anything, then refactoring files that are unnecesary */
 export default {
   getTasks,
   findTaskById,
-  // addUser,
+  addTask,
   // getUsers,
   // deleteUser,
 };
