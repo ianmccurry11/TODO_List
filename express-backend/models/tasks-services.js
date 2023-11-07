@@ -62,20 +62,22 @@ async function addTask(task) {
   }
 }
 
-// async function deleteUser(id) {
-//   try {
-//     const result = await userModel.findByIdAndDelete(id);
-//     return result;
-//   } catch (error) {
-//     console.log(error);
-//     return false;
-//   }
-// }
+/* Delete functionality in the DB will be entirely by ID. Frontend
+will handle deletion target task selection*/
+async function deleteTask(id) {
+  try {
+    const result = await taskModel.findByIdAndDelete(id);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 
 export default {
   getTasks,
   findTaskById,
   addTask,
-  // getUsers,
-  // deleteUser,
+  deleteTask,
+  //updateTask,
 };
