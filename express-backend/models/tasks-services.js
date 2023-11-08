@@ -2,7 +2,7 @@
 /* eslint-disable object-shorthand */
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import taskModel from "./tasks.js";
+import TaskModel from "./tasks.js";
 
 dotenv.config();
 
@@ -21,26 +21,26 @@ async function getTasks(taskName, priority, deadline, category, location) {
   /* Only adding search functionality for no fields or one field at a time
 	Therefore, when calling this function, only search by one parameter at a time */
   if (taskName && !priority && !deadline && !category && !location) {
-    return await taskModel.find({ taskName: taskName });
+    return await TaskModel.find({ taskName: taskName });
   }
   if (!taskName && priority && !deadline && !category && !location) {
-    return await taskModel.find({ priority: priority });
+    return await TaskModel.find({ priority: priority });
   }
   if (!taskName && !priority && deadline && !category && !location) {
-    return await taskModel.find({ deadline: deadline });
+    return await TaskModel.find({ deadline: deadline });
   }
   if (!taskName && !priority && !deadline && category && !location) {
-    return await taskModel.find({ category: category });
+    return await TaskModel.find({ category: category });
   }
   if (!taskName && !priority && !deadline && !category && location) {
-    return await taskModel.find({ location: location });
+    return await TaskModel.find({ location: location });
   }
-  return await taskModel.find();
+  return await TaskModel.find();
 }
 
 async function findTaskById(id) {
   try {
-    return await taskModel.findById(id);
+    return await TaskModel.findById(id);
   } catch (error) {
     console.log(error);
     return undefined;
@@ -53,7 +53,7 @@ I messed up anything, then refactoring files that are unnecesary */
 
 async function addTask(task) {
   try {
-    const taskToAdd = new taskModel(task);
+    const taskToAdd = new TaskModel(task);
     const savedTask = await taskToAdd.save();
     return savedTask;
   } catch (error) {
@@ -63,10 +63,10 @@ async function addTask(task) {
 }
 
 /* Delete functionality in the DB will be entirely by ID. Frontend
-will handle deletion target task selection*/
+will handle deletion target task selection */
 async function deleteTask(id) {
   try {
-    const result = await taskModel.findByIdAndDelete(id);
+    const result = await TaskModel.findByIdAndDelete(id);
     return result;
   } catch (error) {
     console.log(error);
@@ -74,10 +74,14 @@ async function deleteTask(id) {
   }
 }
 
+// async function updateTask(id){
+
+// }
+
 export default {
   getTasks,
   findTaskById,
   addTask,
   deleteTask,
-  //updateTask,
+  // updateTask,
 };

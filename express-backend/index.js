@@ -70,14 +70,14 @@ app.post("/tasks", async (req, res) => {
   else res.status(500).end();
 });
 
-/*Once connected with frontend, can remove del from the URL
+/* Once connected with frontend, can remove del from the URL
 pathway and just do "/tasks/:id" cause frontend will handle
-the targeted tasks*/
+the targeted tasks */
 
 // For some reason when I call /tasks/del/:id, it tries to get instead of delete
 // Will not even return any personal error messages
 app.delete("/tasks/del/:id", async (req, res) => {
-  try{
+  try {
     const { id } = req.params; // or req.params.id
     const successfullyDeleted = await tasksServices.deleteTask(id);
     if (!successfullyDeleted) {
@@ -87,7 +87,7 @@ app.delete("/tasks/del/:id", async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).end("Shit's fucked");
+    res.status(500).end("Shit's fucked back here");
   }
 });
 
