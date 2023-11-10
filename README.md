@@ -11,4 +11,6 @@ Setting up program to format on save:
 2. Type User Settings.
 3. Click on "Preferences: Open User Settings".
 4. Type "Format on Save" into the search bar.
-5. Check the checkbox. 
+5. Check the checkbox.
+
+![Main](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
