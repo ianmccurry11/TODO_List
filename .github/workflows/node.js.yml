@@ -30,9 +30,6 @@ jobs:
         cache: 'npm'
     
     # Install dependencies, build, and test for react-frontend
-    - name: Install dependencies for react-frontend
-      run: npm install 
-      working-directory: ./react-frontend
     - name: Install CI for react-frontend
       run: npm ci
       working-directory: ./react-frontend
