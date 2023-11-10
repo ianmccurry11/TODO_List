@@ -32,7 +32,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ./espress-backend/package-lock.json
 
     # Install dependencies, build, and test for express-backend
     - name: Install dependencies for express-backend
