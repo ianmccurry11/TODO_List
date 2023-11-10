@@ -13,4 +13,4 @@ Setting up program to format on save:
 4. Type "Format on Save" into the search bar.
 5. Check the checkbox.
 
-![Main](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+![Main](https://github.com/ianmccurry11/TODO_List/actions/workflows/node.js.yml/badge.svg)
