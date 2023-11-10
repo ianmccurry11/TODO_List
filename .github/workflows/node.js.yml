@@ -32,7 +32,6 @@ jobs:
     # Install dependencies, build, and test for react-frontend
     - name: cd into react-frontend
       run: cd react-frontend
-      working-directory: ./TODO_LIST
     - name: Install CI for react-frontend
       run: npm ci
       working-directory: ./react-frontend
@@ -46,7 +45,6 @@ jobs:
     # Install dependencies, build, and test for express-backend
     - name: cd into express-backend
       run: cd express-backend
-      working-directory: ./TODO_LIST
     - name: Install dependencies for express-backend
       run: npm ci
       working-directory: ./express-backend
