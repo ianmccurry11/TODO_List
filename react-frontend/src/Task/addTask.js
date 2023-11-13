@@ -44,7 +44,6 @@ function AddTask() {
         category,
         user,
       };
-      console.log(newTask);
       setTasks([...tasks, newTask]);
     }
     setTaskName('');
