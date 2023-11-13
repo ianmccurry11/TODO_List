@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
-// import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import tasksServices from "./models/tasks-services.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import auth from "./authentication/auth.js";
@@ -21,34 +21,75 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.get("/users", async (req, res) => {
-//   const { name } = req.query;
-//   const { job } = req.query;
-//   try {
-//     const result = await userServices.getUsers(name, job);
-//     res.send({ users_list: result });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("An error ocurred in the server.");
-//   }
-// });
+app.get("/tasks", async (req, res) => {
+  const { taskName } = req.query;
+  const { priority } = req.query;
+  const { deadline } = req.query;
+  const { category } = req.query;
+  const { location } = req.query;
+  try {
+    let result = await tasksServices.getTasks(
+      taskName,
+      priority,
+      deadline,
+      category,
+      location,
+    );
 
-// app.get("/users/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const result = await userServices.findUserById(id);
-//   if (result === undefined || result === null)
-//     res.status(404).send("Resource not found.");
-//   else {
-//     res.send({ users_list: result });
-//   }
-// });
+    // Check if returned result is an empty array, if so, then return a 404 error
+    if (Array.isArray(result) && result.length === 0) {
+      res.status(404).send("Damn. Resource not found.");
+    } else {
+      // If result is not an empty array, then return the result to the frontend
+      result = { users_tasks: result };
+      res.send(result);
+      console.log(result);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
 
-// app.post("/users", async (req, res) => {
-//   const user = req.body;
-//   const savedUser = await userServices.addUser(user);
-//   if (savedUser) res.status(201).send(savedUser);
-//   else res.status(500).end();
-// });
+app.get("/tasks/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await tasksServices.findTaskById(id);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
+
+/* Need to connect to the frontend in order to produce new users. This should 
+technically work, but I can't test it until I get the frontend working. ESLint >:(  */
+app.post("/tasks", async (req, res) => {
+  const newTask = req.body;
+  const savedTask = await tasksServices.addTask(newTask);
+  if (savedTask) res.status(201).send(savedTask);
+  else res.status(500).end();
+});
+
+/* Once connected with frontend, can remove del from the URL
+pathway and just do "/tasks/:id" cause frontend will handle
+the targeted tasks */
+
+// For some reason when I call /tasks/del/:id, it tries to get instead of delete
+// Will not even return any personal error messages
+app.delete("/tasks/del/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // or req.params.id
+    const successfullyDeleted = await tasksServices.deleteTask(id);
+    if (!successfullyDeleted) {
+      res.status(404).end("What the hell");
+    } else {
+      res.status(204).end("Real fuckin neato, kid");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).end("Shit's fucked back here");
+  }
+});
 
 app.post("/login", (request, response) => {
   // check if email exists
@@ -149,16 +190,6 @@ app.post("/register", (request, response) => {
       });
     });
 });
-
-// app.delete("/users/:id", async (req, res) => {
-//   const { id } = req.params; // or req.params.id
-//   const successfullyDeleted = await userServices.removeUserById(id);
-//   if (!successfullyDeleted) {
-//     res.status(404).end();
-//   } else {
-//     res.status(204).end();
-//   }
-// });
 
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });

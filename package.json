@@ -2,5 +2,7 @@
   "dependencies": {
     "create-react-app": "^5.0.1",
     "mongoose": "^7.6.2"
+  },
+  "devDependencies": {
   }
 }

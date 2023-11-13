@@ -66,6 +66,10 @@ function AddTask() {
     setTasks(updatedTasks);
   };
 
+  const handleComplete = (task) => {
+
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -126,6 +130,7 @@ function AddTask() {
               <td>
                 <button type="button" onClick={() => handleEdit(task)}>Edit</button>
                 <button type="button" onClick={() => handleDelete(task)}>Delete</button>
+                <button type="button" onClick={() => handleComplete(task)}>Complete</button>
               </td>
             </tr>
           ))}
