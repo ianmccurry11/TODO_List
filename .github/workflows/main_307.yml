@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: express-backend
+
 jobs:
   build:
     runs-on: windows-latest
@@ -34,7 +38,7 @@ jobs:
           path: .
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
