@@ -47,7 +47,7 @@ async function findTaskById(id) {
   }
 }
 
-/* Current plan: finishing task-services, adding an update function,
+/* Current plan: work on post/add task, finishing task-services, adding an update function,
 added functionality to index.js, testing, fixing frontend so I can view if
 I messed up anything, then refactoring files that are unnecesary */
 
