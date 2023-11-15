@@ -12,6 +12,7 @@ import ResponsiveAppBar from './Navbar';
 import RegistrationForm from './Authentication/Registration';
 import useAuthContext from './hooks/useAuthContext';
 import AddTask from './Task/addTask';
+import ListTasks from './Task/listTasks';
 import HomePage from './Home';
 
 function MyApp() {
@@ -25,6 +26,7 @@ function MyApp() {
           <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/tasks" />} />
           <Route path="/registration" element={!user ? <RegistrationForm /> : <Navigate to="/tasks" />} />
           <Route path="/tasks" element={user ? <AddTask /> : <Navigate to="/" />} />
+          <Route path="/display-tasks" element={<ListTasks />} />
         </Routes>
       </BrowserRouter>
     </div>
