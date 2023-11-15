@@ -32,7 +32,6 @@ function ListTasks() {
 
   return (
     <div>
-      hello
       <table>
         <thead>
           <tr>
