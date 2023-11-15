@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import ButtonAppBar from '../Navbar';
+import useAuthContext from '../hooks/useAuthContext';
 
 function AddTask() {
+  const { user } = useAuthContext();
   const [taskName, setTaskName] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
@@ -24,6 +27,7 @@ function AddTask() {
             deadline,
             category,
             location,
+            user,
           };
         }
         return task;
@@ -38,7 +42,7 @@ function AddTask() {
         description,
         deadline,
         category,
-        location,
+        user,
       };
       setTasks([...tasks, newTask]);
     }
