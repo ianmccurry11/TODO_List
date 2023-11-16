@@ -83,7 +83,12 @@ function AddTask() {
         <br />
         <label htmlFor="priority">
           Insert Priority:
-          <input id="priority" type="text" value={priority} onChange={(e) => setPriority(e.target.value)} />
+          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <option value="">Select priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
         </label>
         <br />
         <label htmlFor="description">
@@ -93,7 +98,14 @@ function AddTask() {
         <br />
         <label htmlFor="deadline">
           Insert Deadline:
-          <input id="deadline" type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+          <input
+            id="deadline"
+            type="text"
+            value={deadline}
+            placeholder="Select a date"
+            onBlur={(e) => { e.target.type = 'text'; }}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
         </label>
         <br />
         <label htmlFor="category">
