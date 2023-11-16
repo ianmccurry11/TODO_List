@@ -93,7 +93,7 @@ function AddTask() {
         <br />
         <label htmlFor="deadline">
           Insert Deadline:
-          <input id="deadline" type="text" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+          <input id="deadline" type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
         </label>
         <br />
         <label htmlFor="category">
