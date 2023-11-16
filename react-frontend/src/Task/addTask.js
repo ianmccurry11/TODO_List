@@ -77,13 +77,13 @@ function AddTask() {
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="taskName">
-          Insert Task Name:
-          <input id="taskName" type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+          Task Name:
+          <input id="taskName" type="text" value={taskName} placeholder="Insert task name" onChange={(e) => setTaskName(e.target.value)} />
         </label>
         <br />
         <label htmlFor="priority">
           Insert Priority:
-          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+          <select value={priority} placeholder="Select priority" onChange={(e) => setPriority(e.target.value)}>
             <option value="">Select priority</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
@@ -92,30 +92,29 @@ function AddTask() {
         </label>
         <br />
         <label htmlFor="description">
-          Add Description:
-          <input id="description" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+          Description:
+          <input id="description" type="text" value={description} placeholder="Insert description" onChange={(e) => setDescription(e.target.value)} />
         </label>
         <br />
         <label htmlFor="deadline">
-          Insert Deadline:
+          Deadline:
           <input
             id="deadline"
-            type="text"
+            type="date"
             value={deadline}
             placeholder="Select a date"
-            onBlur={(e) => { e.target.type = 'text'; }}
             onChange={(e) => setDeadline(e.target.value)}
           />
         </label>
         <br />
         <label htmlFor="category">
-          Insert Category:
-          <input id="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+          Category:
+          <input id="category" type="text" value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)} />
         </label>
         <br />
         <label htmlFor="location">
-          Insert Location:
-          <input id="location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+          Location:
+          <input id="location" type="text" value={location} placeholder="Select location" onChange={(e) => setLocation(e.target.value)} />
         </label>
         <br />
         <button type="submit">{editingTask ? 'Update Task' : 'Add Task'}</button>
