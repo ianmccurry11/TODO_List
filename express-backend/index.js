@@ -43,7 +43,6 @@ app.get("/tasks", async (req, res) => {
       // If result is not an empty array, then return the result to the frontend
       result = { users_tasks: result };
       res.send(result);
-      console.log(result);
     }
   } catch (error) {
     console.log(error);
@@ -76,18 +75,19 @@ the targeted tasks */
 
 // For some reason when I call /tasks/del/:id, it tries to get instead of delete
 // Will not even return any personal error messages
-app.delete("/tasks/del/:id", async (req, res) => {
+app.delete("/tasks/:id", async (req, res) => {
   try {
     const { id } = req.params; // or req.params.id
+    console.log("id", id);
     const successfullyDeleted = await tasksServices.deleteTask(id);
     if (!successfullyDeleted) {
-      res.status(404).end("What the hell");
+      res.status(404).end("Resource Not Found");
     } else {
-      res.status(204).end("Real fuckin neato, kid");
+      res.status(204).end("Successfully deleted");
     }
   } catch (error) {
     console.error(error);
-    res.status(500).end("Shit's fucked back here");
+    res.status(500).end("Server Error");
   }
 });
 
@@ -98,13 +98,11 @@ app.post("/login", (request, response) => {
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
-      console.log(user.password);
       bcrypt
         .compare(request.body.password, user.password)
 
         // if the passwords match
         .then((passwordCheck) => {
-          console.log(passwordCheck);
           // check if password matches
           if (passwordCheck === false) {
             return response.status(400).send({

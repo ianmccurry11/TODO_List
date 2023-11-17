@@ -64,9 +64,10 @@ async function addTask(task) {
 
 /* Delete functionality in the DB will be entirely by ID. Frontend
 will handle deletion target task selection */
-async function deleteTask(id) {
+async function deleteTask(_id) {
+  console.log(_id)
   try {
-    const result = await TaskModel.findByIdAndDelete(id);
+    const result = await TaskModel.findByIdAndDelete(_id);
     return result;
   } catch (error) {
     console.log(error);
