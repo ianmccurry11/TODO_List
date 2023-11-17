@@ -8,7 +8,6 @@ function ListTasks() {
   async function fetchAll() {
     try {
       const response = await axios.get('http://localhost:8000/tasks');
-      console.log(response);
       return response.data.users_tasks;
     } catch (error) {
       // We're not handling errors. Just logging into the console.
@@ -17,17 +16,15 @@ function ListTasks() {
     }
   }
 
-  async function handleDelete(task) {
-    try {
-      const response = await axios.delete(`http://localhost:8000/tasks/del/${task._id}`);
-      console.log(response);
-      return response.data.users_tasks;
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error);
-      return false;
-    }
-  }
+  const handleDelete = (task) => {
+    axios.delete(`http://localhost:8000/tasks/${task._id}`)
+      .then((res) => {
+        const updatedTasks = tasks.filter((item) => item._id !== task._id);
+        setTasks(updatedTasks);
+      }).catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleComplete = (task) => {
 
