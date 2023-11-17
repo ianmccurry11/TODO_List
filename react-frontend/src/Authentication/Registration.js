@@ -48,7 +48,7 @@ const Registration = () => {
         <label htmlFor="password">
           Password
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             value={user.password}
@@ -58,7 +58,7 @@ const Registration = () => {
         <label htmlFor="password">
           Re-enter Password
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
           />

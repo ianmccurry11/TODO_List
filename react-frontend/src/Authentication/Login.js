@@ -48,7 +48,7 @@ const Login = () => {
         <label htmlFor="password">
           Password
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             value={user.password}
