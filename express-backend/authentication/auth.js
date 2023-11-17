@@ -13,6 +13,7 @@ const auth = async (request, response, next) => {
 
     // pass the user down to the endpoints here
     request.user = user;
+    request.userId = user.userId;
 
     // pass down functionality to the endpoint
     next();

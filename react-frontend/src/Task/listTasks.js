@@ -11,7 +11,7 @@ function ListTasks() {
       return response.data.users_tasks;
     } catch (error) {
       // We're not handling errors. Just logging into the console.
-      console.log(error);
+
       return false;
     }
   }
