@@ -17,7 +17,7 @@ mongoose
   .catch((error) => console.log(error));
 
 async function getTasks(taskName, priority, deadline, category, location) {
-  let result;
+  // let result;
   /* Only adding search functionality for no fields or one field at a time
 	Therefore, when calling this function, only search by one parameter at a time */
   if (taskName && !priority && !deadline && !category && !location) {
@@ -47,7 +47,7 @@ async function findTaskById(id) {
   }
 }
 
-/* Current plan: finishing task-services, adding an update function,
+/* Current plan: work on post/add task, finishing task-services, adding an update function,
 added functionality to index.js, testing, fixing frontend so I can view if
 I messed up anything, then refactoring files that are unnecesary */
 

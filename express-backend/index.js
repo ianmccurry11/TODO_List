@@ -63,6 +63,7 @@ app.get("/tasks/:id", async (req, res) => {
 /* Need to connect to the frontend in order to produce new users. This should 
 technically work, but I can't test it until I get the frontend working. ESLint >:(  */
 app.post("/tasks", async (req, res) => {
+  console.log("made it to post function in index.js");
   const newTask = req.body;
   const savedTask = await tasksServices.addTask(newTask);
   if (savedTask) res.status(201).send(savedTask);
