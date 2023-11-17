@@ -55,7 +55,14 @@ const Registration = () => {
             onChange={handleChange}
           />
         </label>
-
+        <label htmlFor="password">
+          Re-enter Password
+          <input
+            type="text"
+            name="password"
+            id="password"
+          />
+        </label>
         <input type="button" value="Submit" onClick={submitForm} />
       </form>
     </>
