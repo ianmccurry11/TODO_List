@@ -14,9 +14,11 @@
     "axios": "^1.5.1",
     "install-peerdeps": "^3.0.3",
     "react": "^18.2.0",
+    "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "react-scripts": "^5.0.1",
+    "rsuite": "^5.44.0",
     "styled-components": "^6.1.1"
   },
   "scripts": {
