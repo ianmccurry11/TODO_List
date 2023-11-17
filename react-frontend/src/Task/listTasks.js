@@ -17,8 +17,17 @@ function ListTasks() {
     }
   }
 
-  const handleDelete = (task) => {
-  };
+  async function handleDelete(task) {
+    try {
+      const response = await axios.delete(`http://localhost:8000/tasks/del/${task._id}`);
+      console.log(response);
+      return response.data.users_tasks;
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
 
   const handleComplete = (task) => {
 
@@ -46,7 +55,7 @@ function ListTasks() {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr key={task.id}>
+            <tr key={task._id}>
               <td>{task.taskName}</td>
               <td>{task.priority}</td>
               <td>{task.description}</td>
