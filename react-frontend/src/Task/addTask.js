@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import ButtonAppBar from '../Navbar';
 import useAuthContext from '../hooks/useAuthContext';
 
@@ -68,6 +69,19 @@ function AddTask() {
     const updatedTasks = tasks.filter((t) => t.id !== task.id);
     setTasks(updatedTasks);
   };
+
+  async function handlePost(task) {
+    try {
+      console.log('made it to post function in addTasks');
+      const response = await axios.post('http://localhost:8000/tasks', task);
+      console.log(response);
+      return response.data.users_tasks;
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
 
   const handleComplete = (task) => {
 
