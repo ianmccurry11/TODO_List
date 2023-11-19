@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import tasksServices from "./models/tasks-services.js";
@@ -65,6 +66,8 @@ technically work, but I can't test it until I get the frontend working. ESLint >
 app.post("/tasks", async (req, res) => {
   console.log("made it to post function in index.js");
   const newTask = req.body;
+  const user_id = new mongoose.Types.ObjectId(req.body.owner);
+  newTask.owner = user_id;
   const savedTask = await tasksServices.addTask(newTask);
   if (savedTask) res.status(201).send(savedTask);
   else res.status(500).end();
@@ -95,7 +98,6 @@ app.delete("/tasks/:id", async (req, res) => {
 app.post("/login", (request, response) => {
   // check if email exists
   User.findOne({ username: request.body.username })
-
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
@@ -106,6 +108,7 @@ app.post("/login", (request, response) => {
         .then((passwordCheck) => {
           // check if password matches
           if (passwordCheck === false) {
+            console.log("passwords do not match");
             return response.status(400).send({
               message: "Passwords does not match",
             });
@@ -120,16 +123,18 @@ app.post("/login", (request, response) => {
             SECRET_TOKEN_KEY,
             { expiresIn: "3d" },
           );
-
+          console.log(user.username, user._id, token);
           //   return success response
           return response.status(200).send({
             message: "Login Successful",
             username: user.username,
+            id: user._id,
             token,
           });
         })
         // catch error if password does not match
         .catch((error) => {
+          console.log(error);
           response.status(400).send({
             message: "Passwords does not match",
             error,
@@ -138,6 +143,7 @@ app.post("/login", (request, response) => {
     })
     // catch error if email does not exist
     .catch((e) => {
+      console.log(e);
       response.status(404).send({
         message: "username not found",
         e,

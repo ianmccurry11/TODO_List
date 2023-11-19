@@ -21,10 +21,11 @@ const Login = () => {
     axios
       .post('http://localhost:8000/login', user)
       .then((result) => {
-        localStorage.setItem('user', user.username);
+        console.log(result.data);
+        localStorage.setItem('user', result.data.username);
+        localStorage.setItem('id', result.data.id);
         localStorage.setItem('token', result.data.token);
-        console.log(localStorage.getItem('token'));
-        dispatch({ type: 'LOGIN', payload: { user: user.password, token: result.data.token } });
+        dispatch({ type: 'LOGIN', payload: { user: result.data.id, token: result.data.token } });
       })
       .catch((error) => {
         console.log(error);

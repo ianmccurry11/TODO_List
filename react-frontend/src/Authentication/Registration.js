@@ -16,7 +16,8 @@ const Registration = () => {
     if (name === 'password') { setUser({ username: user.username, password: value }); } else setUser({ username: value, password: user.password });
   };
 
-  const submitForm = async () => {
+  const submitForm = async (event) => {
+    event.preventDefault();
     try {
       await axios.post('http://localhost:8000/register', user);
       // Handle success

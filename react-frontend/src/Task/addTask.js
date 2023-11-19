@@ -41,6 +41,7 @@ function AddTask() {
             deadline,
             category,
             location,
+            owner: user.id,
           };
         }
         return task;
@@ -55,6 +56,7 @@ function AddTask() {
         deadline,
         category,
         location,
+        owner: user.id,
       });
       const newTask = {
         id: Date.now(),
@@ -63,6 +65,8 @@ function AddTask() {
         description,
         deadline,
         category,
+        location,
+        owner: user.id,
       };
       setTasks([...tasks, newTask]);
     }
