@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const { Schema } = mongoose;
+
 const TasksSchema = new mongoose.Schema(
   {
     taskName: {
@@ -14,6 +16,11 @@ const TasksSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user_tasks", // Reference to the 'user_tasks' collection
+      required: true,
     },
     deadline: {
       type: Date,

@@ -17,17 +17,12 @@ const Registration = () => {
   };
 
   const submitForm = async () => {
-    axios
-      .post('http://localhost:8000/register', user)
-      .then((result) => {
-        localStorage.setItem('user', user.username);
-        localStorage.setItem('token', result.data.token);
-        console.log(localStorage.getItem('token'));
-        dispatch({ type: 'LOGIN', payload: { user: user.password, token: result.data.token } });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await axios.post('http://localhost:8000/register', user);
+      // Handle success
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
