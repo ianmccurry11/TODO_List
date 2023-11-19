@@ -41,7 +41,6 @@ function AddTask() {
             deadline,
             category,
             location,
-            user,
           };
         }
         return task;
@@ -56,7 +55,6 @@ function AddTask() {
         deadline,
         category,
         location,
-        user,
       });
       const newTask = {
         id: Date.now(),
@@ -65,7 +63,6 @@ function AddTask() {
         description,
         deadline,
         category,
-        user,
       };
       setTasks([...tasks, newTask]);
     }
