@@ -15,6 +15,19 @@ function AddTask() {
 
   const [editingTask, setEditingTask] = useState(null);
 
+  async function handlePost(task) {
+    try {
+      console.log('made it to post function in addTasks');
+      const response = await axios.post('http://localhost:8000/tasks', task);
+      console.log(response);
+      return response.data.users_tasks;
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (editingTask) {
@@ -36,6 +49,15 @@ function AddTask() {
       setTasks(updatedTasks);
       setEditingTask(null);
     } else {
+      handlePost({
+        taskName,
+        priority,
+        description,
+        deadline,
+        category,
+        location,
+        user,
+      });
       const newTask = {
         id: Date.now(),
         taskName,
@@ -70,21 +92,8 @@ function AddTask() {
     setTasks(updatedTasks);
   };
 
-  async function handlePost(task) {
-    try {
-      console.log('made it to post function in addTasks');
-      const response = await axios.post('http://localhost:8000/tasks', task);
-      console.log(response);
-      return response.data.users_tasks;
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error);
-      return false;
-    }
-  }
-
   const handleComplete = (task) => {
-
+    console.log(task);
   };
 
   return (
