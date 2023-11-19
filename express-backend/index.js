@@ -65,7 +65,6 @@ technically work, but I can't test it until I get the frontend working. ESLint >
 app.post("/tasks", async (req, res) => {
   console.log("made it to post function in index.js");
   const newTask = req.body;
-  console.log(newTask)
   const savedTask = await tasksServices.addTask(newTask);
   if (savedTask) res.status(201).send(savedTask);
   else res.status(500).end();
