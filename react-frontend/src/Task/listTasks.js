@@ -27,7 +27,13 @@ function ListTasks() {
   };
 
   const handleComplete = (task) => {
-
+    axios.put(`http://localhost:8000/tasks/${task._id}`, { completed: true })
+      .then((res) => {
+        const updatedTasks = tasks.filter((item) => item._id !== task._id);
+        setTasks(updatedTasks);
+      }).catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
