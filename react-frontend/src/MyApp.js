@@ -19,17 +19,15 @@ function MyApp() {
   const { user } = useAuthContext();
   // initialize characters to have empty state
   return (
-    <div className="container">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/tasks" />} />
-          <Route path="/registration" element={!user ? <RegistrationForm /> : <Navigate to="/tasks" />} />
-          <Route path="/tasks" element={user ? <AddTask /> : <Navigate to="/" />} />
-          <Route path="/display-tasks" element={<ListTasks />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/tasks" />} />
+        <Route path="/registration" element={!user ? <RegistrationForm /> : <Navigate to="/tasks" />} />
+        <Route path="/tasks" element={user ? <AddTask /> : <Navigate to="/" />} />
+        <Route path="/display-tasks" element={<ListTasks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
