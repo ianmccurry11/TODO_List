@@ -74,9 +74,19 @@ async function deleteTask(_id) {
   }
 }
 
-// async function updateTask(id){
-
-// }
+// update task if for all specific fields
+async function updateTask(_id, updated_fields) {
+  const new_fields = {
+    $set: updated_fields,
+  };
+  try {
+    const result = TaskModel.updateById(_id, new_fields);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 
 export default {
   getTasks,
