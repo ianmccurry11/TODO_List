@@ -205,7 +205,7 @@ app.put("/tasks/:id", async (req, res) => {
   else {
     res.send({ users_tasks: result });
   }
-}
+});
 
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });
