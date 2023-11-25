@@ -196,6 +196,17 @@ app.post("/register", (request, response) => {
     });
 });
 
+app.put("/tasks/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedTask = req.body;
+  const result = await tasksServices.updateTask(id, updatedTask);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+}
+
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });
 });
