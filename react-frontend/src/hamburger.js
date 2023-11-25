@@ -43,6 +43,11 @@ const HamburgerMenu = () => {
               <Link to="/tasks">Tasks</Link>
             </ListItemText>
           </ListItem>
+          <ListItem>
+            <ListItemText>
+              <Link to="/display-tasks">Display Tasks</Link>
+            </ListItemText>
+          </ListItem>
           {/* Add more menu items as needed */}
         </List>
       </Drawer>

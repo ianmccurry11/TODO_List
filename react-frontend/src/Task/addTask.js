@@ -99,6 +99,7 @@ function AddTask() {
 
   return (
     <div>
+      <ButtonAppBar />
       <form onSubmit={handleSubmit}>
         <label htmlFor="taskName">
           Task Name:

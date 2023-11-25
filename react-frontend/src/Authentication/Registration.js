@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useContext } from 'react';
 import useAuthContext from '../context/AuthContext';
+import ButtonAppBar from '../Navbar';
 
 const Registration = () => {
   const authContext = useContext(useAuthContext);
@@ -28,6 +29,7 @@ const Registration = () => {
 
   return (
     <>
+      <ButtonAppBar />
       <h1>Register</h1>
       <form>
         <label htmlFor="username">

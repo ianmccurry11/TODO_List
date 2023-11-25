@@ -38,6 +38,7 @@ function ListTasks() {
 
   return (
     <div>
+      <ButtonAppBar />
       <table>
         <thead>
           <tr>
