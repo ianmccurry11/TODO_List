@@ -30,6 +30,11 @@ const TasksSchema = new mongoose.Schema(
     },
     location: {
       type: String,
+      required: false,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
     },
   },
   { collection: "users_tasks" },

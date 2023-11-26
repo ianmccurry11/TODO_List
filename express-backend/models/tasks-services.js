@@ -80,7 +80,11 @@ async function updateTask(_id, updated_fields) {
     $set: updated_fields,
   };
   try {
-    const result = TaskModel.updateById(_id, new_fields);
+    const filter = { _id: _id };
+    const update = {
+      $set: updated_fields,
+    };
+    const result = TaskModel.updateOne(filter, update);
     return result;
   } catch (error) {
     console.log(error);
@@ -93,5 +97,5 @@ export default {
   findTaskById,
   addTask,
   deleteTask,
-  // updateTask,
+  updateTask,
 };

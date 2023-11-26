@@ -197,6 +197,7 @@ app.post("/register", (request, response) => {
 });
 
 app.put("/tasks/:id", async (req, res) => {
+  console.log(req.body);
   const { id } = req.params;
   const updatedTask = req.body;
   const result = await tasksServices.updateTask(id, updatedTask);
