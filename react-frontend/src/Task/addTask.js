@@ -15,6 +15,7 @@ function AddTask() {
 
   const [editingTask, setEditingTask] = useState(null);
 
+  // function for sending a POST request to a local server
   async function handlePost(task) {
     try {
       console.log('made it to post function in addTasks');
@@ -28,8 +29,13 @@ function AddTask() {
     }
   }
 
+  // prevents the default form submission behavior.
+  // handles both adding a new task and updating an existing task.
+  // updates the state with the new or updated task and resets the form fields.
   const handleSubmit = (event) => {
     event.preventDefault();
+    // checks if editingTask is truthy. editingTask is initially set to null.
+    // if falsey, it will add a new task.
     if (editingTask) {
       const updatedTasks = tasks.map((task) => {
         if (task.id === editingTask.id) {
@@ -49,6 +55,7 @@ function AddTask() {
       setTasks(updatedTasks);
       setEditingTask(null);
     } else {
+      // add a new task otherwise
       handlePost({
         taskName,
         priority,
@@ -78,6 +85,7 @@ function AddTask() {
     setLocation('');
   };
 
+  // Sets the form fields to the values of the task to be edited and sets editingTask.
   const handleEdit = (task) => {
     setTaskName(task.taskName);
     setPriority(task.priority);
@@ -85,19 +93,20 @@ function AddTask() {
     setDeadline(task.deadline);
     setCategory(task.category);
     setLocation(task.location);
-    setEditingTask(task);
+    setEditingTask(task); // change state to edit and populate form with task info
   };
-
+  // filter out the task to be deleted and setTasks to the updated list.
   const handleDelete = (task) => {
     const updatedTasks = tasks.filter((t) => t.id !== task.id);
     setTasks(updatedTasks);
   };
-
+  // just console log for now
   const handleComplete = (task) => {
     console.log(task);
   };
 
   return (
+    // display the form and the list of tasks
     <div>
       <ButtonAppBar />
       <form onSubmit={handleSubmit}>
@@ -145,6 +154,7 @@ function AddTask() {
         <button type="submit">{editingTask ? 'Update Task' : 'Add Task'}</button>
         {editingTask && <button type="button" onClick={() => setEditingTask(null)}>Cancel</button>}
       </form>
+      {/* display the list of tasks if there are any */}
       <table>
         <thead>
           <tr>
