@@ -197,14 +197,21 @@ app.post("/register", (request, response) => {
 });
 
 app.put("/tasks/:id", async (req, res) => {
-  console.log(req.body);
   const { id } = req.params;
   const updatedTask = req.body;
-  const result = await tasksServices.updateTask(id, updatedTask);
-  if (result === undefined || result === null)
-    res.status(404).send("Damn. Resource not found.");
-  else {
-    res.send({ users_tasks: result });
+  console.log(req.params);
+  console.log("id", id);
+  console.log("updatedTask", updatedTask);
+  try {
+    const result = await tasksServices.updateTask(id, updatedTask);
+    if (result === undefined || result === null)
+      res.status(404).send("Damn. Resource not found.");
+    else {
+      res.send({ users_tasks: result });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
   }
 });
 

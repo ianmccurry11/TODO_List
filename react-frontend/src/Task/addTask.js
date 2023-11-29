@@ -29,14 +29,31 @@ function AddTask() {
     }
   }
 
-  // prevents the default form submission behavior.
-  // handles both adding a new task and updating an existing task.
-  // updates the state with the new or updated task and resets the form fields.
+  async function sendEdit(task) {
+    try {
+      const response = await axios.put(`http://localhost:8000/tasks/${task._id}`, task);
+      return response.data.users_tasks;
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // checks if editingTask is truthy. editingTask is initially set to null.
-    // if falsey, it will add a new task.
+    console.log('made it to handleSubmit');
     if (editingTask) {
+      sendEdit({
+        taskName,
+        priority,
+        description,
+        deadline,
+        category,
+        location,
+        owner: user.id,
+      });
+      console.log('made it to editing task');
       const updatedTasks = tasks.map((task) => {
         if (task.id === editingTask.id) {
           return {
@@ -93,7 +110,8 @@ function AddTask() {
     setDeadline(task.deadline);
     setCategory(task.category);
     setLocation(task.location);
-    setEditingTask(task); // change state to edit and populate form with task info
+    setEditingTask(task);
+    console.log('Update on Task', task);
   };
   // filter out the task to be deleted and setTasks to the updated list.
   const handleDelete = (task) => {
