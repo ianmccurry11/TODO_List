@@ -28,9 +28,31 @@ function AddTask() {
     }
   }
 
+  async function sendEdit(task) {
+    try {
+      const response = await axios.put(`http://localhost:8000/tasks/${task._id}`, task);
+      return response.data.users_tasks;
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('made it to handleSubmit');
     if (editingTask) {
+      sendEdit({
+        taskName,
+        priority,
+        description,
+        deadline,
+        category,
+        location,
+        owner: user.id,
+      });
+      console.log('made it to editing task');
       const updatedTasks = tasks.map((task) => {
         if (task.id === editingTask.id) {
           return {
@@ -86,6 +108,7 @@ function AddTask() {
     setCategory(task.category);
     setLocation(task.location);
     setEditingTask(task);
+    console.log('Update on Task', task);
   };
 
   const handleDelete = (task) => {
