@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import tasksServices from "./models/tasks-services.js";
+import update_user_metrics from "./models/user_metrics/user_metrics_lifetime_services.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import auth from "./authentication/auth.js";
@@ -199,8 +200,11 @@ app.post("/register", (request, response) => {
 app.put("/tasks/:id", async (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
+  console.log("updatedTask", updatedTask);
   if (updatedTask.completed === true) {
-    // record metrics for completed task
+    update_user_metrics(id, () => {
+      console.log("Updated user metrics");
+    });
   }
   try {
     const result = await tasksServices.updateTask(id, updatedTask);

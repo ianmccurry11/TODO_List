@@ -18,7 +18,6 @@ const UserSchema = new mongoose.Schema(
     user_metrics: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user_metrics", // Reference to the 'user_metrics' collection
-      required: true,
     },
   },
   { collection: "users_list" },
