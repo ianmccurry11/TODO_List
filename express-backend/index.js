@@ -197,6 +197,36 @@ app.post("/register", (request, response) => {
     });
 });
 
+app.get("/monthly_metrics/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await tasksServices.findTaskById(id);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
+
+app.get("/weekly_metrics/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await tasksServices.findTaskById(id);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
+
+app.get("/yearly_metrics/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await tasksServices.findTaskById(id);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
+
 app.put("/tasks/:id", async (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;

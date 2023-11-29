@@ -84,3 +84,59 @@ export default async function update_user_metrics(task_id) {
     await user_metrics.save();
   }
 }
+
+export async function get_user_metrics_lifetime(user_id) {
+  const user_metrics = await UserMetricsModel.findOne({ user: user_id });
+  if (user_metrics === undefined || user_metrics === null) {
+    return null;
+  }
+  return user_metrics.tasksCompleted;
+}
+
+export async function get_user_metrics_weekly(user_id) {
+  const user_metrics = await UserMetricsModel.findOne({ user: user_id });
+  if (user_metrics === undefined || user_metrics === null) {
+    return null;
+  }
+  const current_date = new Date();
+  const currentWeek = getWeek(current_date);
+  if (user_metrics.user_metrics_weekly.currentWeek === currentWeek) {
+    return user_metrics.user_metrics_weekly.tasksCompleted;
+  }
+  user_metrics.user_metrics_weekly.currentWeek = currentWeek;
+  user_metrics.user_metrics_weekly.tasksCompleted = 0;
+  await user_metrics.save();
+  return user_metrics.tasksCompleted;
+}
+
+export async function get_user_metrics_monthly(user_id) {
+  const user_metrics = await UserMetricsModel.findOne({ user: user_id });
+  if (user_metrics === undefined || user_metrics === null) {
+    return null;
+  }
+  const current_date = new Date();
+  const currentMonth = current_date.getMonth();
+  if (user_metrics.user_metrics_monthly.currentMonth === currentMonth) {
+    return user_metrics.user_metrics_monthly.tasksCompleted;
+  }
+  user_metrics.user_metrics_monthly.currentMonth = currentMonth;
+  user_metrics.user_metrics_monthly.tasksCompleted = 0;
+  await user_metrics.save();
+  return user_metrics.tasksCompleted;
+}
+
+export async function get_user_metrics_yearly(user_id) {
+  const user_metrics = await UserMetricsModel.findOne({ user: user_id });
+  if (user_metrics === undefined || user_metrics === null) {
+    return null;
+  }
+  const current_date = new Date();
+  const currentYear = current_date.getFullYear();
+  if (user_metrics.user_metrics_yearly.currentYear === currentYear) {
+    return user_metrics.user_metrics_yearly.tasksCompleted;
+  }
+  user_metrics.get_user_metrics_yearly = currentYear;
+  user_metrics.user_metrics_yearly.tasksCompleted = 0;
+  await user_metrics.save();
+  return user_metrics.tasksCompleted;
+}
