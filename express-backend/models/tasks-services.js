@@ -76,18 +76,24 @@ async function deleteTask(_id) {
 
 // update task if for all specific fields
 async function updateTask(_id, updated_fields) {
-  const new_fields = {
-    $set: updated_fields,
-  };
+  // search by description, then update
+  let task_id = _id;
+  const query = await TaskModel.findOne(
+    { taskName: updated_fields.taskName },
+    "_id",
+  );
+  console.log(query._id, updated_fields.taskName);
+  task_id = query._id;
+  let result = null;
   try {
-    const filter = { _id: _id };
+    const filter = { _id: task_id };
     const update = {
       $set: updated_fields,
     };
-    const result = TaskModel.updateOne(filter, update);
+    result = TaskModel.updateOne(filter, update);
     return result;
   } catch (error) {
-    console.log(error);
+    console.log("Error in updateTask", error);
     return false;
   }
 }
