@@ -199,9 +199,9 @@ app.post("/register", (request, response) => {
 app.put("/tasks/:id", async (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
-  console.log(req.params);
-  console.log("id", id);
-  console.log("updatedTask", updatedTask);
+  if (updatedTask.completed === true) {
+    // record metrics for completed task
+  }
   try {
     const result = await tasksServices.updateTask(id, updatedTask);
     if (result === undefined || result === null)
