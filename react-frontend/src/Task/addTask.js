@@ -43,6 +43,7 @@ function AddTask() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('made it to handleSubmit');
+    const user_id = localStorage.getItem('id');
     if (editingTask) {
       sendEdit({
         taskName,
@@ -51,7 +52,7 @@ function AddTask() {
         deadline,
         category,
         location,
-        owner: user.id,
+        owner: user_id,
       });
       console.log('made it to editing task');
       const updatedTasks = tasks.map((task) => {
@@ -64,7 +65,7 @@ function AddTask() {
             deadline,
             category,
             location,
-            owner: user.id,
+            owner: user_id,
           };
         }
         return task;
@@ -80,7 +81,7 @@ function AddTask() {
         deadline,
         category,
         location,
-        owner: user.id,
+        owner: user_id,
       });
       const newTask = {
         id: Date.now(),
@@ -90,7 +91,7 @@ function AddTask() {
         deadline,
         category,
         location,
-        owner: user.id,
+        owner: user_id,
       };
       setTasks([...tasks, newTask]);
     }

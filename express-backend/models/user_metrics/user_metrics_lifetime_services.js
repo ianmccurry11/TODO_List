@@ -23,7 +23,7 @@ function getWeek(date) {
   return weekNumber;
 }
 
-export default async function update_user_metrics(task_id) {
+async function update_user_metrics(task_id) {
   const task = await TaskModel.findOne({ _id: task_id });
   if (task === undefined || task === null) {
     console.log("Task not found.");
@@ -39,7 +39,7 @@ export default async function update_user_metrics(task_id) {
     // Create a new user_metrics document
     const new_user_metrics = new UserMetricsModel({
       user: owner,
-      tasks_completed: 1,
+      tasksCompleted: 1,
       user_metrics_weekly: {
         currentWeek,
         tasksCompleted: 1,
@@ -85,15 +85,17 @@ export default async function update_user_metrics(task_id) {
   }
 }
 
-export async function get_user_metrics_lifetime(user_id) {
+async function get_user_metrics_lifetime(user_id) {
+  console.log("user_id", user_id);
   const user_metrics = await UserMetricsModel.findOne({ user: user_id });
+  console.log("user_metrics", user_metrics);
   if (user_metrics === undefined || user_metrics === null) {
     return null;
   }
-  return user_metrics.tasksCompleted;
+  return user_metrics;
 }
 
-export async function get_user_metrics_weekly(user_id) {
+async function get_user_metrics_weekly(user_id) {
   const user_metrics = await UserMetricsModel.findOne({ user: user_id });
   if (user_metrics === undefined || user_metrics === null) {
     return null;
@@ -109,7 +111,7 @@ export async function get_user_metrics_weekly(user_id) {
   return user_metrics.tasksCompleted;
 }
 
-export async function get_user_metrics_monthly(user_id) {
+async function get_user_metrics_monthly(user_id) {
   const user_metrics = await UserMetricsModel.findOne({ user: user_id });
   if (user_metrics === undefined || user_metrics === null) {
     return null;
@@ -125,7 +127,7 @@ export async function get_user_metrics_monthly(user_id) {
   return user_metrics.tasksCompleted;
 }
 
-export async function get_user_metrics_yearly(user_id) {
+async function get_user_metrics_yearly(user_id) {
   const user_metrics = await UserMetricsModel.findOne({ user: user_id });
   if (user_metrics === undefined || user_metrics === null) {
     return null;
@@ -140,3 +142,11 @@ export async function get_user_metrics_yearly(user_id) {
   await user_metrics.save();
   return user_metrics.tasksCompleted;
 }
+
+export default {
+  update_user_metrics,
+  get_user_metrics_lifetime,
+  get_user_metrics_weekly,
+  get_user_metrics_monthly,
+  get_user_metrics_yearly,
+};
