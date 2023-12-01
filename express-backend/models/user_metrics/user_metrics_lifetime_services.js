@@ -32,24 +32,24 @@ export default async function update_user_metrics(task_id) {
   const { owner } = task;
   const user_metrics = await UserMetricsModel.findOne({ user: owner });
   const current_date = new Date();
-  const currentWeek = getWeek(current_date);
-  const currentMonth = current_date.getMonth();
-  const currentYear = current_date.getFullYear();
+  const current_week = getWeek(current_date);
+  const current_month = current_date.getMonth();
+  const current_year = current_date.getFullYear();
   if (user_metrics === undefined || user_metrics === null) {
     // Create a new user_metrics document
     const new_user_metrics = new UserMetricsModel({
       user: owner,
       tasks_completed: 1,
       user_metrics_weekly: {
-        currentWeek,
+        currentWeek: current_week,
         tasksCompleted: 1,
       },
       user_metrics_monthly: {
-        currentMonth,
+        currentMonth: current_month,
         tasksCompleted: 1,
       },
       user_metrics_yearly: {
-        currentYear,
+        currentYear: current_year,
         tasksCompleted: 1,
       },
     });
@@ -62,22 +62,22 @@ export default async function update_user_metrics(task_id) {
     const { user_metrics_weekly } = user_metrics;
     const { user_metrics_monthly } = user_metrics;
     const { user_metrics_yearly } = user_metrics;
-    if (user_metrics_weekly.current_week === currentWeek) {
+    if (user_metrics_weekly.current_week === current_week) {
       user_metrics_weekly.tasks_completed += 1;
     } else {
-      user_metrics_weekly.current_week = currentWeek;
+      user_metrics_weekly.current_week = current_week;
       user_metrics_weekly.tasksCompleted = 1;
     }
-    if (user_metrics_monthly.current_month === currentMonth) {
+    if (user_metrics_monthly.current_month === current_month) {
       user_metrics_monthly.tasksCompleted += 1;
     } else {
-      user_metrics_monthly.currentMonth = currentMonth;
+      user_metrics_monthly.currentMonth = current_month;
       user_metrics_monthly.tasksCompleted = 1;
     }
-    if (user_metrics_yearly.currentYear === currentYear) {
+    if (user_metrics_yearly.currentYear === current_year) {
       user_metrics_yearly.tasksCompleted += 1;
     } else {
-      user_metrics_yearly.currentYear = currentYear;
+      user_metrics_yearly.currentYear = current_year;
       user_metrics_yearly.tasksCompleted = 1;
     }
     user_metrics.tasks_completed += 1;
