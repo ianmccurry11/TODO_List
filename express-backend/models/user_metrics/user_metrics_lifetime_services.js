@@ -62,13 +62,13 @@ async function update_user_metrics(task_id) {
     const { user_metrics_weekly } = user_metrics;
     const { user_metrics_monthly } = user_metrics;
     const { user_metrics_yearly } = user_metrics;
-    if (user_metrics_weekly.current_week === currentWeek) {
-      user_metrics_weekly.tasks_completed += 1;
+    if (user_metrics_weekly.currentWeek === currentWeek) {
+      user_metrics_weekly.tasksCompleted += 1;
     } else {
-      user_metrics_weekly.current_week = currentWeek;
+      user_metrics_weekly.currentWeek = currentWeek;
       user_metrics_weekly.tasksCompleted = 1;
     }
-    if (user_metrics_monthly.current_month === currentMonth) {
+    if (user_metrics_monthly.currentMonth === currentMonth) {
       user_metrics_monthly.tasksCompleted += 1;
     } else {
       user_metrics_monthly.currentMonth = currentMonth;
@@ -80,7 +80,7 @@ async function update_user_metrics(task_id) {
       user_metrics_yearly.currentYear = currentYear;
       user_metrics_yearly.tasksCompleted = 1;
     }
-    user_metrics.tasks_completed += 1;
+    user_metrics.tasksCompleted += 1;
     await user_metrics.save();
   }
 }
