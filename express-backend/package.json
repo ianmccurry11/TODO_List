@@ -7,7 +7,8 @@
   "scripts": {
     "test": "prettier --check .",
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build:azure": "start"
   },
   "author": "Ishan Meher",
   "license": "ISC",
