@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 import ButtonAppBar from './Navbar';
 
 const HomePage = () => {
@@ -12,22 +13,12 @@ const HomePage = () => {
   }, [text]);
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundImage: 'radial-gradient(circle at center, #0a4700 0%, #002400 80%, #000000 100%)',
-    }}
-    >
+    <div className="home-container">
       <ButtonAppBar />
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      >
-        <main>
-          <h1 style={{ color: '#1bff80', fontFamily: '"Courier New", Courier, monospace' }}>{text}</h1>
-        </main>
+      <div className="home-content">
+        <body>
+          <h1>{text}</h1>
+        </body>
       </div>
     </div>
   );
