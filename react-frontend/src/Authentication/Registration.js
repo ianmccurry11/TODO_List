@@ -9,21 +9,35 @@ const Registration = () => {
   const [user, setUser] = useState({
     username: '',
     password: '',
+    confirm_password: '',
   });
   const [register, setRegister] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === 'password') { setUser({ username: user.username, password: value }); } else setUser({ username: value, password: user.password });
+    console.log(name, value);
+    if (name === 'password') {
+      setUser({ username: user.username, password: value });
+    } else if (name === 'confirm_password') {
+      setUser({ username: user.username, password: user.password, confirm_password: value });
+    } else {
+      setUser(
+        { username: value, password: user.password, confirm_password: user.confirm_password },
+      );
+    }
   };
 
   const submitForm = async (event) => {
     event.preventDefault();
-    try {
-      await axios.post('http://localhost:8000/register', user);
+    if (user.password !== user.confirm_password) {
+      setUser({ username: '', password: '', confirm_password: '' });
+    } else {
+      try {
+        await axios.post('http://localhost:8000/register', user);
       // Handle success
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -53,12 +67,14 @@ const Registration = () => {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="reenter-password">
           Re-enter Password
           <input
             type="password"
-            name="password"
-            id="password"
+            name="confirm_password"
+            id="confirm_password"
+            value={user.confirm_password}
+            onChange={handleChange}
           />
         </label>
         <input type="button" value="Submit" onClick={submitForm} />
