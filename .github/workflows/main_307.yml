@@ -57,4 +57,4 @@ jobs:
           app-name: '307'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CC69D3D696944897955204C400805805 }}
-          package: .
+          package: express-backend
