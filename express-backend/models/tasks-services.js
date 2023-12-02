@@ -78,12 +78,7 @@ async function deleteTask(_id) {
 async function updateTask(_id, updated_fields) {
   // search by description, then update
   let task_id = _id;
-  if (
-    task_id === undefined ||
-    task_id === null ||
-    task_id === "" ||
-    task_id === "undefined"
-  ) {
+  if (task_id === undefined || task_id === null) {
     const query = await TaskModel.findOne(
       { taskName: updated_fields.taskName },
       "_id",
