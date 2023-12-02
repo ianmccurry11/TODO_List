@@ -16,11 +16,11 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-function getWeek(date) {
-  const startDate = new Date(date.getFullYear(), 0, 1);
-  const days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
-  const weekNumber = Math.ceil(days / 7);
-  return weekNumber;
+function get_week(date) {
+  const start_date = new Date(date.getFullYear(), 0, 1);
+  const days = Math.floor((date - start_date) / (24 * 60 * 60 * 1000));
+  const week_number = Math.ceil(days / 7);
+  return week_number;
 }
 
 export default async function update_user_metrics(task_id) {
@@ -32,7 +32,7 @@ export default async function update_user_metrics(task_id) {
   const { owner } = task;
   const user_metrics = await UserMetricsModel.findOne({ user: owner });
   const current_date = new Date();
-  const current_week = getWeek(current_date);
+  const current_week = get_week(current_date);
   const current_month = current_date.getMonth();
   const current_year = current_date.getFullYear();
   if (user_metrics === undefined || user_metrics === null) {
@@ -63,12 +63,12 @@ export default async function update_user_metrics(task_id) {
     const { user_metrics_monthly } = user_metrics;
     const { user_metrics_yearly } = user_metrics;
     if (user_metrics_weekly.current_week === current_week) {
-      user_metrics_weekly.tasks_completed += 1;
+      user_metrics_weekly.tasksCompleted += 1;
     } else {
-      user_metrics_weekly.current_week = current_week;
+      user_metrics_weekly.currentWeek = current_week;
       user_metrics_weekly.tasksCompleted = 1;
     }
-    if (user_metrics_monthly.current_month === current_month) {
+    if (user_metrics_monthly.currentMonth === current_month) {
       user_metrics_monthly.tasksCompleted += 1;
     } else {
       user_metrics_monthly.currentMonth = current_month;
