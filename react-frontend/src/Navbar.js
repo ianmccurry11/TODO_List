@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import useAuthContext from './hooks/useAuthContext';
 import HamburgerMenu from './hamburger';
 import Logout from './Authentication/Logout';
+import './App.css';
 
 export default function ButtonAppBar() {
   const { user } = useAuthContext();

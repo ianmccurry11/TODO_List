@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import './App.css';
 import ButtonAppBar from './Navbar';
 
-const HomePage = () => (
-  <>
-    <ButtonAppBar />
-    <header>
-      <h1>My Simple React Home Page</h1>
-    </header>
-    <main>
-      <h1>Mission Log</h1>
-    </main>
-  </>
-);
+const HomePage = () => {
+  const [text, setText] = useState('');
+  const fullText = 'Welcome to Mission Log';
+
+  useEffect(() => {
+    if (text.length < fullText.length) {
+      setTimeout(() => setText(fullText.slice(0, text.length + 1)), 100);
+    }
+  }, [text]);
+
+  return (
+    <div className="home-container">
+      <ButtonAppBar />
+      <div className="home-content">
+        <body>
+          <h1>{text}</h1>
+        </body>
+      </div>
+    </div>
+  );
+};
 
 export default HomePage;
