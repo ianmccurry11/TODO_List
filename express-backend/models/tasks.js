@@ -20,7 +20,7 @@ const TasksSchema = new mongoose.Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user_tasks", // Reference to the 'user_tasks' collection
-      required: true,
+      required: false,
     },
     deadline: {
       type: Date,
