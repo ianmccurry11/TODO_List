@@ -48,7 +48,11 @@ const HamburgerMenu = () => {
               <Link to="/display-tasks">Display Tasks</Link>
             </ListItemText>
           </ListItem>
-          {/* Add more menu items as needed */}
+          <ListItem>
+            <ListItemText>
+              <Link to="/metrics">Lifetime User Metrics</Link>
+            </ListItemText>
+          </ListItem>
         </List>
       </Drawer>
     </>
