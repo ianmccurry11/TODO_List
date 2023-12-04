@@ -11,8 +11,9 @@ import useAuthContext from './hooks/useAuthContext';
 import HamburgerMenu from './hamburger';
 import Logout from './Authentication/Logout';
 import './App.css';
-import rocketwoutfire from './animationImages/rocketwoutfire2.png';
-import rocketwfire from './animationImages/rocketwfire2.png';
+import rocketwoutfire from './animationImages/newrocketwoutfire.png';
+import rocketwsmoke from './animationImages/newrocketwsmoke.png';
+import rocketwfire from './animationImages/newrocketwfire.png';
 
 let yeet = null; // timer for rocket animation
 
@@ -49,6 +50,12 @@ export default function ButtonAppBar() {
     /* Current plan: call rocketAnimation on click and initiate entire animation from single click.
     */
 
+    // setImageSrc(rocketwsmoke); // set image to rocketwsmoke
+    // for (let i = 0; i < 10; i += 1) {
+    //   if (imageSrc === rocketwsmoke) {
+    //     setImageSrc(rocketwfire); // set image to rocketwfire
+    //   }
+    // }
     setImageSrc(rocketwfire); // set image to rocketwfire
     // await delay(1000); // wait 5 seconds
     // if (imageSrc === rocketwfire) {
@@ -68,7 +75,7 @@ export default function ButtonAppBar() {
           elem.style.left = pos + 'px';
         }
       }
-    // }
+    // } // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 3 5 1
   };
 
   // React.useEffect(() => {
