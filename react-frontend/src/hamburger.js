@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 // Your HamburgerMenu component
 const HamburgerMenu = () => {
@@ -19,10 +20,12 @@ const HamburgerMenu = () => {
 
   return (
     <>
-      {/* Hamburger icon */}
-      <IconButton onClick={toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
+      <container>
+        {/* Hamburger icon */}
+        <IconButton onClick={toggleDrawer(true)} className="icon">
+          <MenuIcon />
+        </IconButton>
+      </container>
 
       {/* Drawer */}
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>

@@ -10,6 +10,14 @@ body h1 {
   font-family: "Courier New", Courier, monospace;
 }
 
-AppBar{
+Appbar .navbar{
   background-color: #1bff80;
+}
+
+.navbar .navbar-content{
+  background-image: radial-gradient(circle at center, #0a4700 0%, #002400 80%, #000000 100%);
+}
+
+container .icon{
+  color: #1bff80;
 }

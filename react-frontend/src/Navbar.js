@@ -15,22 +15,24 @@ import './App.css';
 export default function ButtonAppBar() {
   const { user } = useAuthContext();
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <HamburgerMenu />
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Mission Log
-        </Typography>
-        {!user && ( // if user is not logged in, show login button
-        <Button color="inherit" component={Link} to="/login">Login</Button>
-        )}
-        {!user && ( // if user is not logged in, show registration button
-        <Button color="inherit" component={Link} to="/registration">Registration</Button>
-        )}
-        {user && (
-        <Logout />
-        )}
-      </Toolbar>
-    </AppBar>
+    <div className="navbar">
+      <AppBar position="static" className="navbar-content">
+        <Toolbar>
+          <HamburgerMenu className="hamburger" />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Mission Log
+          </Typography>
+          {!user && ( // if user is not logged in, show login button
+          <Button color="inherit" component={Link} to="/login">Login</Button>
+          )}
+          {!user && ( // if user is not logged in, show registration button
+          <Button color="inherit" component={Link} to="/registration">Registration</Button>
+          )}
+          {user && (
+          <Logout />
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
