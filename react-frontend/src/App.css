@@ -123,3 +123,40 @@ container .logout-button{
   background-color: black;
   min-height: 100vh;
 }
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #1bff80;
+  color: #1bff80;
+}
+
+input[type=date], select, textarea {
+  width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #1bff80;
+    color: #1bff80;
+}
+
+select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #1bff80;
+    color: #1bff80;
+}
+
+option{
+    background-color: black;
+    color: #1bff80;
+    border: 1px solid #1bff80;
+}
+

@@ -1091,18 +1091,19 @@ table {
   border-spacing: 0;
   width: 100%;
   max-width: 100%;
+  color: #1bff80;
 }
 
 thead th {
-  border-bottom: 2px solid #dedede;
+  border-bottom: 2px solid #1bff80;;
 }
 
 tfoot th {
-  border-top: 2px solid #dedede;
+  border-top: 2px solid #1bff80;;
 }
 
 td {
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #1bff80;;
 }
 
 th,
@@ -1114,11 +1115,11 @@ td {
 caption {
   padding: 1rem 0;
   caption-side: bottom;
-  color: #ababab;
+  color: #1bff80;
 }
 
 .striped-table tbody tr:nth-child(odd) {
-  background-color: #f8f8f8;
+  background-color: #1bff80;;
 }
 
 .contain-table {
