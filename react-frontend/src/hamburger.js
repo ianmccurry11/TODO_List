@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 // Your HamburgerMenu component
 const HamburgerMenu = () => {
@@ -19,38 +20,46 @@ const HamburgerMenu = () => {
 
   return (
     <>
-      {/* Hamburger icon */}
-      <IconButton onClick={toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
+      <container>
+        {/* Hamburger icon */}
+        <IconButton onClick={toggleDrawer(true)} className="icon">
+          <MenuIcon />
+        </IconButton>
+      </container>
 
       {/* Drawer */}
-      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        {/* List of menu items */}
-        <List>
-          <ListItem>
-            <ListItemText>
-              <Link to="/">Home</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/registration">Registration</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/tasks">Tasks</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/display-tasks">Display Tasks</Link>
-            </ListItemText>
-          </ListItem>
-          {/* Add more menu items as needed */}
-        </List>
-      </Drawer>
+      <container>
+        <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+          {/* List of menu items */}
+          <List className="toolbar-contents">
+            <ListItem className="toolbar-text">
+              <ListItemText>
+                <Link to="/">Home</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/registration">Registration</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/tasks">Tasks</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/display-tasks">Display Tasks</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/metrics">Lifetime User Metrics</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Drawer>
+      </container>
     </>
   );
 };

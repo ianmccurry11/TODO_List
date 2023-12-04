@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import tasksServices from "./models/tasks-services.js";
+import user_metrics_lifetime from "./models/user_metrics/user_metrics_lifetime.js";
 import User from "./models/user_model/user.js";
 import db from "./models/database.js";
 import auth from "./authentication/auth.js";
+import user_metrics_lifetime_services from "./models/user_metrics/user_metrics_lifetime_services.js";
 
 const port = process.env.PORT || 8000;
 const SECRET_TOKEN_KEY = process.env.SECRET || "RANDOM-TOKEN";
@@ -196,12 +198,28 @@ app.post("/register", (request, response) => {
     });
 });
 
+app.get("/user_metrics/:id", async (req, res) => {
+  console.log("made it to user_metrics");
+  const { id } = req.params;
+  const result =
+    await user_metrics_lifetime_services.get_user_metrics_lifetime(id);
+  console.log("result", result);
+  if (result === undefined || result === null)
+    res.status(404).send("Damn. Resource not found.");
+  else {
+    res.send({ users_tasks: result });
+  }
+});
+
 app.put("/tasks/:id", async (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
-  console.log(req.params);
-  console.log("id", id);
   console.log("updatedTask", updatedTask);
+  if (updatedTask.completed === true) {
+    user_metrics_lifetime_services.update_user_metrics(id, () => {
+      console.log("Updated user metrics");
+    });
+  }
   try {
     const result = await tasksServices.updateTask(id, updatedTask);
     if (result === undefined || result === null)
