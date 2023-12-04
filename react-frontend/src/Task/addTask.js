@@ -3,6 +3,9 @@ import axios from 'axios';
 import ButtonAppBar from '../Navbar';
 import useAuthContext from '../hooks/useAuthContext';
 
+// const API_URL_CALL = 'https://todo307.azurewebsites.net';
+const API_URL_CALL = 'http://localhost:8000';
+
 function AddTask() {
   const { user } = useAuthContext();
   const [taskName, setTaskName] = useState('');
@@ -19,7 +22,7 @@ function AddTask() {
   async function handlePost(task) {
     try {
       console.log('made it to post function in addTasks');
-      const response = await axios.post('http://localhost:8000/tasks', task);
+      const response = await axios.post(`${API_URL_CALL}/tasks`, task);
       console.log(response);
       return response.data.users_tasks;
     } catch (error) {
