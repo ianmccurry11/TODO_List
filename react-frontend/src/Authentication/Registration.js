@@ -15,7 +15,6 @@ const Registration = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     if (name === 'password') {
       setUser({ username: user.username, password: value });
     } else if (name === 'confirm_password') {
@@ -67,7 +66,7 @@ const Registration = () => {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="reenter-password">
+        <label htmlFor="confirm_password">
           Re-enter Password
           <input
             type="password"
