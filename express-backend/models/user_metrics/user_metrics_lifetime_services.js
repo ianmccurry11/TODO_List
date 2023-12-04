@@ -101,7 +101,7 @@ async function get_user_metrics_weekly(user_id) {
     return null;
   }
   const current_date = new Date();
-  const currentWeek = getWeek(current_date);
+  const currentWeek = get_week(current_date);
   if (user_metrics.user_metrics_weekly.currentWeek === currentWeek) {
     return user_metrics.user_metrics_weekly.tasksCompleted;
   }
