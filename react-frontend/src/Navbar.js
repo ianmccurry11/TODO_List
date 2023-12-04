@@ -17,11 +17,16 @@ export default function ButtonAppBar() {
   return (
     <div className="navbar">
       <AppBar position="static" className="navbar-content">
-        <Toolbar>
+        <Toolbar style={{ justifyContent: 'flex-start' }}>
           <HamburgerMenu className="hamburger" />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="navbar-text">
+          <Typography variant="h6" component="div" className="navbar-text">
             Mission Log
           </Typography>
+
+          <div id="myContainer" style={{ marginRight: 'auto' }}>
+            <div id="myAnimation" style={{ textAlign: 'left' }}>My animation will go here</div>
+          </div>
+
           {!user && ( // if user is not logged in, show login button
           <Button color="inherit" component={Link} to="/login">Login</Button>
           )}
