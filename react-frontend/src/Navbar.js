@@ -12,6 +12,9 @@ import HamburgerMenu from './hamburger';
 import Logout from './Authentication/Logout';
 import './App.css';
 import rocketwoutfire from './animationImages/rocketwoutfire2.png';
+import rocketwfire from './animationImages/rocketwfire2.png';
+
+let yeet = null; // timer for rocket animation
 
 export default function ButtonAppBar() {
   const { user } = useAuthContext();
@@ -27,9 +30,44 @@ export default function ButtonAppBar() {
     width: '50px',
     height: '50px',
     position: 'absolute',
-    // background: 'red',
     textAlign: 'left'
   };
+
+  const [imageSrc, setImageSrc] = React.useState(rocketwoutfire); // set image to rocketwoutfire
+
+  const rocketAnimation = () => {
+
+    /* current situation: cannot get image to change without creating an error that won't run app.
+    The issue seems to be that there are infinite renders if I try to change the image.
+    Copilot suggested removing the clearInterval function outside of the frame function, but
+    that also crashed the app in a sever way. I'm not sure how to fix this issue.
+
+    Current plan: call rocketAnimation on click. Change image. Run animation. Then I can 
+    link it to the complete button from the task list.
+    */
+
+    // setImageSrc(rocketwfire); // set image to rocketwfire
+    const elem = document.getElementById('myAnimation');
+    let pos = 0;
+    clearInterval(yeet);
+    yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
+    function frame() {
+      if (pos === 700) {
+        clearInterval(yeet);
+        // elem.style.top = '0px'; // reset position
+        elem.style.left = '0px'; // reset position
+      } else {
+        pos += 5;
+        // elem.style.top = pos + 'px';
+        elem.style.left = pos + 'px';
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    rocketAnimation();
+  }, []);
+
   return (
     <div className="navbar">
       <AppBar position="static" className="navbar-content">
@@ -39,6 +77,7 @@ export default function ButtonAppBar() {
             Mission Log
           </Typography>
 
+          <Button onClick={rocketAnimation()}>Test</Button>
 
           <div id="myContainer" style={myContainerStyle}>
             <div id="myAnimation" style={myAnimationStyle}>
