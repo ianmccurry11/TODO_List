@@ -37,7 +37,7 @@ const Login = () => {
       <ButtonAppBar />
       <h1>Login</h1>
       <form>
-        <label htmlFor="username">
+        <label htmlFor="username" style={{ color: 'white' }}>
           Username
           <input
             type="text"
@@ -45,10 +45,11 @@ const Login = () => {
             id="username"
             value={user.username}
             onChange={handleChange}
+            style={{ color: 'white' }}
           />
         </label>
 
-        <label htmlFor="password">
+        <label htmlFor="password" style={{ color: 'white' }}>
           Password
           <input
             type="password"
@@ -56,10 +57,11 @@ const Login = () => {
             id="password"
             value={user.password}
             onChange={handleChange}
+            style={{ color: 'white' }}
           />
         </label>
 
-        <input type="button" value="Submit" onClick={submitForm} />
+        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80'}} />
       </form>
     </>
   );
