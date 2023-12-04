@@ -57,26 +57,26 @@ const Registration = () => {
             />
           </label>
 
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="confirm_password">
-          Re-enter Password
-          <input
-            type="password"
-            name="confirm_password"
-            id="confirm_password"
-            value={user.confirm_password}
-            onChange={handleChange}
-          />
-        </label>
+          <label htmlFor="password">
+            Password
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="confirm_password">
+            Re-enter Password
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              value={user.confirm_password}
+              onChange={handleChange}
+            />
+          </label>
           <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
         </form>
       </div>
