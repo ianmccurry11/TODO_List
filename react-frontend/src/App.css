@@ -15,9 +15,15 @@ Appbar .navbar{
 }
 
 .navbar .navbar-content{
-  background-image: radial-gradient(circle at center, #0a4700 0%, #002400 80%, #000000 100%);
+  /* background-image: radial-gradient(circle at center, #0a4700 0%, #002400 80%, #000000 100%); */
+  background-color: black;
 }
 
 container .icon{
   color: #1bff80;
+}
+
+.navbar .navbar-text{
+  color: #1bff80;
+  font-family: "Courier New", Courier, monospace;
 }

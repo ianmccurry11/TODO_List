@@ -19,7 +19,7 @@ export default function ButtonAppBar() {
       <AppBar position="static" className="navbar-content">
         <Toolbar>
           <HamburgerMenu className="hamburger" />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="navbar-text">
             Mission Log
           </Typography>
           {!user && ( // if user is not logged in, show login button
