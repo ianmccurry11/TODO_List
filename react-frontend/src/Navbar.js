@@ -36,17 +36,16 @@ export default function ButtonAppBar() {
   const [imageSrc, setImageSrc] = React.useState(rocketwoutfire); // set image to rocketwoutfire
 
   const rocketAnimation = () => {
-
     /* current situation: cannot get image to change without creating an error that won't run app.
     The issue seems to be that there are infinite renders if I try to change the image.
     Copilot suggested removing the clearInterval function outside of the frame function, but
-    that also crashed the app in a sever way. I'm not sure how to fix this issue.
+    that also crashed the app in a severe way. I'm not sure how to fix this issue.
 
     Current plan: call rocketAnimation on click. Change image. Run animation. Then I can 
     link it to the complete button from the task list.
     */
 
-    // setImageSrc(rocketwfire); // set image to rocketwfire
+    setImageSrc(rocketwfire); // set image to rocketwfire
     const elem = document.getElementById('myAnimation');
     let pos = 0;
     clearInterval(yeet);
@@ -77,7 +76,7 @@ export default function ButtonAppBar() {
             Mission Log
           </Typography>
 
-          <Button onClick={rocketAnimation()}>Test</Button>
+          <Button onClick={rocketAnimation}>Test</Button>
 
           <div id="myContainer" style={myContainerStyle}>
             <div id="myAnimation" style={myAnimationStyle}>
