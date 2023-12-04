@@ -61,7 +61,7 @@ const Login = () => {
           />
         </label>
 
-        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80'}} />
+        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
       </form>
     </>
   );

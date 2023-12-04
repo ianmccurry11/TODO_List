@@ -32,7 +32,7 @@ const Registration = () => {
       <ButtonAppBar />
       <h1>Register</h1>
       <form>
-        <label htmlFor="username">
+        <label htmlFor="username" style={{ color: 'white' }}>
           Username
           <input
             type="text"
@@ -40,10 +40,11 @@ const Registration = () => {
             id="username"
             value={user.username}
             onChange={handleChange}
+            style={{ color: 'white' }}
           />
         </label>
 
-        <label htmlFor="password">
+        <label htmlFor="password" style={{ color: 'white' }}>
           Password
           <input
             type="password"
@@ -51,17 +52,19 @@ const Registration = () => {
             id="password"
             value={user.password}
             onChange={handleChange}
+            style={{ color: 'white' }}
           />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" style={{ color: 'white' }}>
           Re-enter Password
           <input
             type="password"
             name="password"
             id="password"
+            style={{ color: 'white' }}
           />
         </label>
-        <input type="button" value="Submit" onClick={submitForm} />
+        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }}/>
       </form>
     </>
   );
