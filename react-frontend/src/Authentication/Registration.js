@@ -43,18 +43,19 @@ const Registration = () => {
   return (
     <>
       <ButtonAppBar />
-      <h1>Register</h1>
-      <form>
-        <label htmlFor="username">
-          Username
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </label>
+      <div className="container">
+        <h1>Register</h1>
+        <form>
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange}
+            />
+          </label>
 
         <label htmlFor="password">
           Password
@@ -76,8 +77,10 @@ const Registration = () => {
             onChange={handleChange}
           />
         </label>
-        <input type="button" value="Submit" onClick={submitForm} />
-      </form>
+          <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
+        </form>
+      </div>
+
     </>
   );
 };

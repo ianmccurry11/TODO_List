@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import useAuthContext from '../context/AuthContext';
+import '../App.css';
 
 const Login = () => {
   const authContext = useContext(useAuthContext);
@@ -22,9 +23,11 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleLogout}>Logout</button>
-    </div>
+    <container>
+      <div className="logout-button">
+        <button type="button" onClick={handleLogout}>Logout</button>
+      </div>
+    </container>
   );
 };
 export default Login;
