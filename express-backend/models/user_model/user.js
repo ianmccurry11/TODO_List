@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       validate(value) {
         if (value.length < 6)
-          throw new Error("Invalid job, must be at least 2 characters.");
+          throw new Error("Invalid job, must be at least 6 characters.");
       },
     },
     user_metrics: {
