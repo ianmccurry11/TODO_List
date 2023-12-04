@@ -22,7 +22,7 @@ export default function ButtonAppBar() {
     width: '70%',
     height: '50px',
     position: 'relative',
-    background: 'green',
+    background: 'black',
     marginLeft: '20px',
     marginRight: 'auto',
   };
@@ -42,19 +42,16 @@ export default function ButtonAppBar() {
   //   }
   // }; //[imageSrc]);
 
-  const rocketAnimation = (e) => {
-    e.preventDefault();
-    /* current situation: cannot get image to change without creating an error that won't run app.
-    The issue seems to be that there are infinite renders if I try to change the image.
-    Copilot suggested removing the clearInterval function outside of the frame function, but
-    that also crashed the app in a severe way. I'm not sure how to fix this issue.
+  // const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    Current plan: call rocketAnimation on click. Change image. Run animation. Then I can 
-    link it to the complete button from the task list.
+  const rocketAnimation = async (e) => {
+    e.preventDefault();
+    /* Current plan: call rocketAnimation on click and initiate entire animation from single click.
     */
 
     setImageSrc(rocketwfire); // set image to rocketwfire
-    if (imageSrc === rocketwfire) {
+    // await delay(1000); // wait 5 seconds
+    // if (imageSrc === rocketwfire) {
       const elem = document.getElementById('myAnimation');
       let pos = 0;
       clearInterval(yeet);
@@ -71,7 +68,7 @@ export default function ButtonAppBar() {
           elem.style.left = pos + 'px';
         }
       }
-    }
+    // }
   };
 
   // React.useEffect(() => {
