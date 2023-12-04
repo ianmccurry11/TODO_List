@@ -162,7 +162,7 @@ function AddTask() {
         <br />
         <label htmlFor="category">
           Category:
-          <select value={category} placehold="Select category" onChange={(e) => setCategory(e.target.value)}>
+          <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)}>
             <option value="">Select category</option>
             <option value="Work">Work</option>
             <option value="School">School</option>
