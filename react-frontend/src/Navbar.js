@@ -23,10 +23,10 @@ export default function ButtonAppBar() {
             Mission Log
           </Typography>
           {!user && ( // if user is not logged in, show login button
-          <Button color="inherit" component={Link} to="/login">Login</Button>
+          <Button component={Link} to="/login" className="login-text">Login</Button>
           )}
           {!user && ( // if user is not logged in, show registration button
-          <Button color="inherit" component={Link} to="/registration">Registration</Button>
+          <Button component={Link} to="/registration" className="reg-text">Registration</Button>
           )}
           {user && (
           <Logout />

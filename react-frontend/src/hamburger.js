@@ -28,36 +28,38 @@ const HamburgerMenu = () => {
       </container>
 
       {/* Drawer */}
-      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        {/* List of menu items */}
-        <List>
-          <ListItem>
-            <ListItemText>
-              <Link to="/">Home</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/registration">Registration</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/tasks">Tasks</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/display-tasks">Display Tasks</Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>
-              <Link to="/metrics">Lifetime User Metrics</Link>
-            </ListItemText>
-          </ListItem>
-        </List>
-      </Drawer>
+      <container>
+        <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+          {/* List of menu items */}
+          <List className="toolbar-contents">
+            <ListItem className="toolbar-text">
+              <ListItemText>
+                <Link to="/">Home</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/registration">Registration</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/tasks">Tasks</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/display-tasks">Display Tasks</Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText className="toolbar-text">
+                <Link to="/metrics">Lifetime User Metrics</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Drawer>
+      </container>
     </>
   );
 };

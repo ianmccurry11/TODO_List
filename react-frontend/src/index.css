@@ -157,7 +157,7 @@ img {
  * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
  */
-button,
+
 input,
 optgroup,
 select,
@@ -463,14 +463,19 @@ h5 {
 }
 
 a {
-  color: #0366ee;
+  color: #1bff80;
   text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
 }
 
-a:hover,
+a:hover 
+{
+  color: #1bff80;
+  text-decoration: underline;
+}
 a:active,
-a:focus {
-  color: #0246a2;
+a:focus{
+  color: white;
   text-decoration: underline;
 }
 
@@ -795,12 +800,12 @@ button,
 [type=button] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid #0366ee;
+  border: 1px solid #1bff80;
   border-radius: 4px;
-  background: #0366ee;
-  color: #ffffff;
+  background: black;
+  color: #1bff80;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "Courier New", Courier, monospace;
   font-size: 1rem;
   text-transform: none;
   padding: 0.75rem 1.25rem;
@@ -818,9 +823,9 @@ button:hover,
 [type=submit]:hover,
 [type=reset]:hover,
 [type=button]:hover {
-  border: 1px solid #0250bc;
-  background: #0250bc;
-  color: #ffffff;
+  border: 1px solid black;
+  background: #1bff80;
+  color: black;
   text-decoration: none;
 }
 
@@ -836,9 +841,9 @@ button:active,
 [type=reset]:active,
 [type=button]:focus,
 [type=button]:active {
-  border: 1px solid #0250bc;
-  background: #0250bc;
-  color: #ffffff;
+  border: 1px solid black;
+  background: #008040;
+  color: black;
   text-decoration: none;
 }
 

@@ -10,9 +10,6 @@ body h1 {
   font-family: "Courier New", Courier, monospace;
 }
 
-Appbar .navbar{
-  background-color: #1bff80;
-}
 
 .navbar .navbar-content{
   /* background-image: radial-gradient(circle at center, #0a4700 0%, #002400 80%, #000000 100%); */
@@ -23,7 +20,40 @@ container .icon{
   color: #1bff80;
 }
 
+container .icon:hover{
+  color:white;
+}
+
 .navbar .navbar-text{
   color: #1bff80;
   font-family: "Courier New", Courier, monospace;
+}
+
+container .logout-button{
+  color: #1bff80;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navbar .login-text{
+  color: #1bff80;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navbar .reg-text{
+  color: #1bff80;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navbar .reg-text .login-text:hover{
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navbar{
+  background-color: black;
+}
+
+.toolbar-contents{
+  background-color: black;
+  min-height: 100vh;
 }
