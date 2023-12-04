@@ -154,9 +154,17 @@ select{
     color: #1bff80;
 }
 
-option{
-    background-color: black;
+select{
     color: #1bff80;
     border: 1px solid #1bff80;
 }
 
+option{
+
+    border: 1px solid #1bff80;
+    background-color: #1bff80;
+}
+
+label{
+    color: #1bff80;
+}
