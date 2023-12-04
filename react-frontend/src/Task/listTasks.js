@@ -67,8 +67,8 @@ function ListTasks() {
               <td>{task.category}</td>
               <td>{task.location}</td>
               <td>
-                <button type="button" onClick={() => handleDelete(task)}>Delete</button>
-                <button type="button" onClick={() => handleComplete(task)}>Complete</button>
+                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
+                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
               </td>
             </tr>
           ))}
