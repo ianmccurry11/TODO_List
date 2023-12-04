@@ -1,10 +1,9 @@
 import task_services from "../models/tasks-services";
 
 let task_test = null;
-const date_string = "2021-05-05T00:00:00.000Z";
+const date_string = toString(new Date());
 
 test("addTask valid entry (success)", async () => {
-  const date_string = "2021-05-05T00:00:00.000Z";
   const task = {
     taskName: date_string,
     priority: date_string,
@@ -79,7 +78,7 @@ test("getTasks location (success)", async () => {
   expect(result).not.toBe(false);
 });
 
-test("getTasks taskName not present(failure)", async () => {
+test("getTasks taskName not present (failure)", async () => {
   let result = [];
   try {
     result = await task_services.getTasks("test");
@@ -88,4 +87,98 @@ test("getTasks taskName not present(failure)", async () => {
     console.log("Failed to get tasks");
   }
   expect(result).toStrictEqual([]);
+});
+
+test("getTasks deadline not present (failure)", async () => {
+  let result = [];
+  try {
+    result = await task_services.getTasks(undefined, "test");
+  } catch (error) {
+    console.log(result);
+    console.log("Failed to get tasks");
+  }
+  expect(result).toStrictEqual([]);
+});
+
+test("getTasks priority not present (failure)", async () => {
+  let result = [];
+  try {
+    result = await task_services.getTasks(undefined, undefined, "test");
+  } catch (error) {
+    console.log(result);
+    console.log("Failed to get tasks");
+  }
+  expect(result).toStrictEqual([]);
+});
+
+test("getTasks deadline not present (failure)", async () => {
+  let result = [];
+  try {
+    result = await task_services.getTasks(
+      undefined,
+      undefined,
+      undefined,
+      "test",
+    );
+  } catch (error) {
+    console.log(result);
+    console.log("Failed to get tasks");
+  }
+  expect(result).toStrictEqual([]);
+});
+
+test("getTasks category not present (failure)", async () => {
+  let result = [];
+  try {
+    result = await task_services.getTasks(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      "test",
+    );
+  } catch (error) {
+    console.log(result);
+    console.log("Failed to get tasks");
+  }
+  expect(result).toStrictEqual([]);
+});
+
+test("find tasks by id (success)", async () => {
+  const result = await task_services.findTaskById(task_test._id);
+  expect(result).not.toBe(null);
+});
+
+test("update task priority (success)", async () => {
+  const result = await task_services.updateTask(task_test._id, {
+    priority: "test",
+  });
+  expect(result).not.toBe(false);
+});
+
+test("update task taskName (success)", async () => {
+  const result = await task_services.updateTask(null, {
+    taskName: task_test.taskName,
+  });
+  expect(result).not.toBe(false);
+});
+
+test("deleteTasks (success)", async () => {
+  const result = await task_services.deleteTask(task_test._id);
+  expect(result).not.toBe(false);
+});
+
+test("find tasks by id (failure)", async () => {
+  const result = await task_services.findTaskById(task_test._id);
+  expect(result).toBe(null);
+});
+
+test("find tasks by id invalid id (failure)", async () => {
+  const result = await task_services.findTaskById("id");
+  expect(result).toBe(undefined);
+});
+
+test ("deleteTasks (failure)", async () => {
+  const result = await task_services.deleteTask("test");
+  expect(result).toBe(false);
 });

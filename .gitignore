@@ -2,4 +2,4 @@
 # remove all node_modules folders
 **/node_modules
 .env
-./express-backend/coverage
+/express-backend/coverage
