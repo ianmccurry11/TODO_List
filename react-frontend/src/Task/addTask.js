@@ -175,7 +175,7 @@ function AddTask() {
           <input id="location" type="text" value={location} placeholder="Select location" onChange={(e) => setLocation(e.target.value)} />
         </label>
         <br />
-        <button type="submit">{editingTask ? 'Update Task' : 'Add Task'}</button>
+        <button type="submit" style={{ color: 'black', backgroundColor: '#1bff80' }}>{editingTask ? 'Update Task' : 'Add Task'}</button>
         {editingTask && <button type="button" onClick={() => setEditingTask(null)}>Cancel</button>}
       </form>
       {/* display the list of tasks if there are any */}
@@ -201,9 +201,9 @@ function AddTask() {
               <td>{task.category}</td>
               <td>{task.location}</td>
               <td>
-                <button type="button" onClick={() => handleEdit(task)}>Edit</button>
-                <button type="button" onClick={() => handleDelete(task)}>Delete</button>
-                <button type="button" onClick={() => handleComplete(task)}>Complete</button>
+                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleEdit(task)}>Edit</button>
+                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
+                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
               </td>
             </tr>
           ))}

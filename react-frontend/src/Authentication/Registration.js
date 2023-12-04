@@ -61,7 +61,7 @@ const Registration = () => {
             id="password"
           />
         </label>
-        <input type="button" value="Submit" onClick={submitForm} />
+        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
       </form>
     </>
   );
