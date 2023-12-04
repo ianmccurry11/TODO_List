@@ -37,7 +37,7 @@ const Login = () => {
       <ButtonAppBar />
       <h1>Login</h1>
       <form>
-        <label htmlFor="username" style={{ color: 'white' }}>
+        <label htmlFor="username">
           Username
           <input
             type="text"
@@ -45,11 +45,10 @@ const Login = () => {
             id="username"
             value={user.username}
             onChange={handleChange}
-            style={{ color: 'white' }}
           />
         </label>
 
-        <label htmlFor="password" style={{ color: 'white' }}>
+        <label htmlFor="password">
           Password
           <input
             type="password"
@@ -57,7 +56,6 @@ const Login = () => {
             id="password"
             value={user.password}
             onChange={handleChange}
-            style={{ color: 'white' }}
           />
         </label>
 

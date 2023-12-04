@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div>
-      <button type="button" onClick={handleLogout}>Logout</button>
+      <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={handleLogout}>Logout</button>
     </div>
   );
 };
