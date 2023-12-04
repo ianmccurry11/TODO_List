@@ -35,7 +35,15 @@ export default function ButtonAppBar() {
 
   const [imageSrc, setImageSrc] = React.useState(rocketwoutfire); // set image to rocketwoutfire
 
-  const rocketAnimation = () => {
+  // const changeImage = () => {
+  //   setImageSrc(rocketwfire);
+  //   if (imageSrc === rocketwfire) {
+  //     rocketAnimation();
+  //   }
+  // }; //[imageSrc]);
+
+  const rocketAnimation = (e) => {
+    e.preventDefault();
     /* current situation: cannot get image to change without creating an error that won't run app.
     The issue seems to be that there are infinite renders if I try to change the image.
     Copilot suggested removing the clearInterval function outside of the frame function, but
@@ -46,26 +54,32 @@ export default function ButtonAppBar() {
     */
 
     setImageSrc(rocketwfire); // set image to rocketwfire
-    const elem = document.getElementById('myAnimation');
-    let pos = 0;
-    clearInterval(yeet);
-    yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
-    function frame() {
-      if (pos === 700) {
-        clearInterval(yeet);
-        // elem.style.top = '0px'; // reset position
-        elem.style.left = '0px'; // reset position
-      } else {
-        pos += 5;
-        // elem.style.top = pos + 'px';
-        elem.style.left = pos + 'px';
+    if (imageSrc === rocketwfire) {
+      const elem = document.getElementById('myAnimation');
+      let pos = 0;
+      clearInterval(yeet);
+      yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
+      function frame() {
+        if (pos === 700) {
+          clearInterval(yeet);
+          // elem.style.top = '0px'; // reset position
+          elem.style.left = '0px'; // reset position
+          setImageSrc(rocketwoutfire); // set image to rocketwfire
+        } else {
+          pos += 5;
+          // elem.style.top = pos + 'px';
+          elem.style.left = pos + 'px';
+        }
       }
     }
   };
 
-  React.useEffect(() => {
-    rocketAnimation();
-  }, []);
+  // React.useEffect(() => {
+  //   // setImageSrc(rocketwfire); // set image to rocketwfire
+  //   if (imageSrc === rocketwfire) {
+  //     rocketAnimation();
+  //   }
+  // }, [imageSrc]);
 
   return (
     <div className="navbar">
@@ -80,7 +94,7 @@ export default function ButtonAppBar() {
 
           <div id="myContainer" style={myContainerStyle}>
             <div id="myAnimation" style={myAnimationStyle}>
-              <img src={rocketwoutfire} alt="rocket" />
+              <img src={imageSrc} alt="rocket" />
             </div>
           </div>
 
