@@ -134,6 +134,18 @@ input[type=text], select, textarea {
   color: #1bff80;
 }
 
+input[type=password],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #1bff80;
+  color: #1bff80;
+}
+
 input[type=date], select, textarea {
   width: 100%;
     padding: 12px 20px;
@@ -167,4 +179,11 @@ option{
 
 label{
     color: #1bff80;
+}
+
+.task-container {
+    color: #1bff80;
+    border: 1px solid #1bff80;
+    border-radius: 4px;
+    padding: 1%;
 }

@@ -30,39 +30,41 @@ const Registration = () => {
   return (
     <>
       <ButtonAppBar />
-      <h1>Register</h1>
-      <form>
-        <label htmlFor="username">
-          Username
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </label>
+      <div className="container">
+        <h1>Register</h1>
+        <form>
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange}
+            />
+          </label>
 
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="password">
-          Re-enter Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-          />
-        </label>
-        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
-      </form>
+          <label htmlFor="password">
+            Password
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="password">
+            Re-enter Password
+            <input
+              type="password"
+              name="password"
+              id="password"
+            />
+          </label>
+          <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
+        </form>
+      </div>
     </>
   );
 };

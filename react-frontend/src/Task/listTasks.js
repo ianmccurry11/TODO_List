@@ -45,36 +45,37 @@ function ListTasks() {
   return (
     <div>
       <ButtonAppBar />
-      <table>
-        <thead>
-          <tr>
-            <th>Task Name</th>
-            <th>Priority</th>
-            <th>Description</th>
-            <th>Deadline</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task._id}>
-              <td>{task.taskName}</td>
-              <td>{task.priority}</td>
-              <td>{task.description}</td>
-              <td>{task.deadline}</td>
-              <td>{task.category}</td>
-              <td>{task.location}</td>
-              <td>
-                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
-                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
-              </td>
+      <div className="task-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>Priority</th>
+              <th>Description</th>
+              <th>Deadline</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
+          </thead>
+          <tbody>
+            {tasks.map((task) => (
+              <tr key={task._id}>
+                <td>{task.taskName}</td>
+                <td>{task.priority}</td>
+                <td>{task.description}</td>
+                <td>{task.deadline}</td>
+                <td>{task.category}</td>
+                <td>{task.location}</td>
+                <td>
+                  <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
+                  <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
