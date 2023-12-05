@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ButtonAppBar from '../Navbar';
 import useAuthContext from '../hooks/useAuthContext';
+import '../App.css';
 
 function AddTask() {
   const { user } = useAuthContext();
@@ -126,7 +127,7 @@ function AddTask() {
 
   return (
     // display the form and the list of tasks
-    <div>
+    <div className="task-form-contents">
       <ButtonAppBar />
       <div className="task-container">
         <form onSubmit={handleSubmit}>
@@ -163,7 +164,7 @@ function AddTask() {
           <br />
           <label htmlFor="category">
             Category:
-            <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)}>
+            <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)} className="dropdown">
               <option value="">Select category</option>
               <option value="Work">Work</option>
               <option value="School">School</option>
