@@ -157,18 +157,18 @@ input[type=date], select, textarea {
 }
 
 select{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    border: 1px solid #1bff80;
-    color: #1bff80;
-}
-
-select{
-    color: #1bff80;
-    border: 1px solid #1bff80;
+  appearance: none;
+  /* safari */
+  -webkit-appearance: none;
+  /* other styles for aesthetics */
+  width: 100%;
+  font-size: 1.15rem;
+  padding: 0.675em 6em 0.675em 1em;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 0.25rem;
+  color: #000;
+  cursor: pointer;
 }
 
 option{
@@ -182,7 +182,8 @@ label{
 }
 
 .task-container {
-    color: #1bff80;
+    font-family: "Courier New", Courier, monospace;
+    color: #38423d;
     border: 1px solid #1bff80;
     border-radius: 4px;
     padding: 1%;

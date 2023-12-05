@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ButtonAppBar from '../Navbar';
 import useAuthContext from '../hooks/useAuthContext';
+import '../App.css';
+
+// const API_URL_CALL = 'https://todo307.azurewebsites.net';
+const API_URL_CALL = 'http://localhost:8000';
 
 function AddTask() {
   const { user } = useAuthContext();
@@ -19,7 +23,7 @@ function AddTask() {
   async function handlePost(task) {
     try {
       console.log('made it to post function in addTasks');
-      const response = await axios.post('http://localhost:8000/tasks', task);
+      const response = await axios.post(`${API_URL_CALL}/tasks`, task);
       console.log(response);
       return response.data.users_tasks;
     } catch (error) {
@@ -126,7 +130,7 @@ function AddTask() {
 
   return (
     // display the form and the list of tasks
-    <div>
+    <div className="task-form-contents">
       <ButtonAppBar />
       <div className="task-container">
         <form onSubmit={handleSubmit}>
@@ -163,7 +167,7 @@ function AddTask() {
           <br />
           <label htmlFor="category">
             Category:
-            <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)}>
+            <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)} className="dropdown">
               <option value="">Select category</option>
               <option value="Work">Work</option>
               <option value="School">School</option>
