@@ -30,7 +30,12 @@ async function update_user_metrics(task_id) {
     return;
   }
   const { owner } = task;
-  const user_metrics = await UserMetricsModel.findOne({ user: owner });
+  let user_metrics;
+  try {
+    user_metrics = await UserMetricsModel.findOne({ user: owner });
+  } catch (error) {
+    throw new Error("User metrics not found.");
+  }
   const current_date = new Date();
   const current_week = get_week(current_date);
   const current_month = current_date.getMonth();
