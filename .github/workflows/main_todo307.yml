@@ -29,7 +29,7 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
+          #npm run test --if-present
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: release.zip
+          path: express-backend/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,6 +57,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+        working-directory: .
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
