@@ -25,11 +25,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tasks", async (req, res) => {
+  console.log("query", req.query);
   const { taskName } = req.query;
   const { priority } = req.query;
   const { deadline } = req.query;
   const { category } = req.query;
   const { location } = req.query;
+  const user = req.query.owner;
   try {
     let result = await tasksServices.getTasks(
       taskName,
@@ -37,6 +39,7 @@ app.get("/tasks", async (req, res) => {
       deadline,
       category,
       location,
+      user,
     );
 
     // Check if returned result is an empty array, if so, then return a 404 error

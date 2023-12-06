@@ -25,7 +25,7 @@ const Login = () => {
         localStorage.setItem('user', result.data.username);
         localStorage.setItem('id', result.data.id);
         localStorage.setItem('token', result.data.token);
-        dispatch({ type: 'LOGIN', payload: { user: result.data.id, token: result.data.token } });
+        dispatch({ type: 'LOGIN', payload: { user: result.data.username, user_id: result.data.id, token: result.data.token } });
       })
       .catch((error) => {
         console.log(error);

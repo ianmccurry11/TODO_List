@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import useAuthContext from '../hooks/useAuthContext';
 import ButtonAppBar from '../Navbar';
 import rocketwoutfire from '../animationImages/newrocketwoutfire.png';
 import rocketwsmoke from '../animationImages/newrocketwsmoke.png';
@@ -8,6 +9,7 @@ import nicemessage from '../animationImages/nice2-modified.png';
 
 function ListTasks() {
   const [tasks, setTasks] = useState([]);
+  const { user } = useAuthContext();
 
   let yeet = null; // timer for rocket fire animation
   // Container background styling for container and animation itself
@@ -56,7 +58,10 @@ function ListTasks() {
 
   async function fetchAll() {
     try {
-      const response = await axios.get('http://localhost:8000/tasks');
+      console.log(user);
+      const user_id = localStorage.getItem('user_id');
+      console.log(user_id);
+      const response = await axios.get('http://localhost:8000/tasks', { params: { owner: user_id } });
       return response.data.users_tasks;
     } catch (error) {
       // We're not handling errors. Just logging into the console.
@@ -129,7 +134,6 @@ function ListTasks() {
           ))}
         </tbody>
       </table>
-
     </div>
   );
 }

@@ -8,10 +8,12 @@ export const AuthReducer = (state, action) => {
   console.log(action);
   switch (action.type) {
     case 'LOGIN':
+      localStorage.setItem('user', action.payload.user);
+      localStorage.setItem('user_id', action.payload.user_id);
       return {
-        user: action.payload,
-        username: action.payload.username,
+        user: action.payload.user,
         user_id: action.payload.id,
+        token: action.payload.token,
       };
     case 'LOGOUT':
       localStorage.clear();
@@ -29,7 +31,10 @@ export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, { user: null });
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = {
+      user: localStorage.getItem('user'),
+      user_id: localStorage.getItem('user_id'),
+    };
     if (user) {
       dispatch({ type: 'LOGIN', payload: user });
     } else {
@@ -38,8 +43,9 @@ export function AuthContextProvider({ children }) {
   }, []);
   const authContextValue = useMemo(() => ({
     user: state.user,
+    user_id: state.user_id,
     dispatch,
-  }), [state.user, dispatch]);
+  }), [state.user, state.user_id, dispatch]);
 
   return (
     <AuthContext.Provider value={authContextValue}>

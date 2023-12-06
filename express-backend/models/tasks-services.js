@@ -16,7 +16,7 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-async function getTasks(taskName, priority, deadline, category, location) {
+async function getTasks(taskName, priority, deadline, category, location, user) {
   // let result;
   /* Only adding search functionality for no fields or one field at a time
 	Therefore, when calling this function, only search by one parameter at a time */
@@ -34,6 +34,9 @@ async function getTasks(taskName, priority, deadline, category, location) {
   }
   if (!taskName && !priority && !deadline && !category && location) {
     return await TaskModel.find({ location: location });
+  }
+  if (!taskName && !priority && !deadline && !category && !location) {
+    return await TaskModel.find({ owner: user });
   }
   return await TaskModel.find();
 }
