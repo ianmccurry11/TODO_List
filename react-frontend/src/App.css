@@ -192,3 +192,24 @@ label{
 p{
     color: #1bff80;
 }
+
+.metric_container{
+    font-family: "Courier New", Courier, monospace;
+    color: #38423d;
+    border: 1px solid #1bff80;
+    border-radius: 4px;
+    padding: 1%;
+    display: block;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+.metrics_flex_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

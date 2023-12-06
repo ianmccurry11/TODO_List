@@ -33,26 +33,34 @@ const LifeTimeUserMetrics = () => {
   return (
     <>
       <ButtonAppBar />
-      <div>
-        <h1>Life TimeUser Metrics</h1>
-        <h2>Tasks Completed</h2>
-        <p>{userMetricsLifetime}</p>
-      </div>
-      <div>
-        <h1>Weekly User Metrics</h1>
-        <h2>Tasks Completed</h2>
-        <p>{userMetricsWeekly}</p>
-      </div>
-      <div>
-        <h1>Monthly User Metrics</h1>
-        <h2>Tasks Completed</h2>
-        <p>{userMetricsMonthly}</p>
-      </div>
-      <div>
-        <h1>Yearly User Metrics</h1>
-        <h2>Tasks Completed</h2>
-        <p>{userMetricsYearly}</p>
-      </div>
+      {userMetricsLifetime > 0 ? (
+        <div className="metrics_flex_container">
+          <div className="metric_container">
+            <h3>Total Time User Metrics</h3>
+            <div>
+              <h3>Tasks Completed</h3>
+              <p>{userMetricsLifetime}</p>
+            </div>
+          </div>
+          <div className="metric_container">
+            <h3>Weekly User Metrics</h3>
+            <h3>Tasks Completed</h3>
+            <p>{userMetricsWeekly}</p>
+          </div>
+          <div className="metric_container">
+            <h3>Monthly User Metrics</h3>
+            <h3>Tasks Completed</h3>
+            <p>{userMetricsMonthly}</p>
+          </div>
+          <div className="metric_container">
+            <h3>Yearly User Metrics</h3>
+            <h3>Tasks Completed</h3>
+            <p>{userMetricsYearly}</p>
+          </div>
+        </div>
+      ) : (
+        <h1>There are no metrics to display 🚀 </h1>
+      )}
     </>
   );
 };
