@@ -10,8 +10,11 @@ export const AuthReducer = (state, action) => {
     case 'LOGIN':
       return {
         user: action.payload,
+        username: action.payload.username,
+        user_id: action.payload.id,
       };
     case 'LOGOUT':
+      localStorage.clear();
       return {
         user: null,
         username: null,
@@ -29,6 +32,8 @@ export function AuthContextProvider({ children }) {
     const user = localStorage.getItem('user');
     if (user) {
       dispatch({ type: 'LOGIN', payload: user });
+    } else {
+      dispatch({ type: 'LOGOUT' });
     }
   }, []);
   const authContextValue = useMemo(() => ({

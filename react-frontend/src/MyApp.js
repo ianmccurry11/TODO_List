@@ -26,8 +26,8 @@ function MyApp() {
         <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/tasks" />} />
         <Route path="/registration" element={!user ? <RegistrationForm /> : <Navigate to="/tasks" />} />
         <Route path="/tasks" element={user ? <AddTask /> : <Navigate to="/" />} />
-        <Route path="/display-tasks" element={<ListTasks />} />
-        <Route path="/metrics" element={<LifeTimeUserMetrics />} />
+        <Route path="/display-tasks" element={user ? <ListTasks /> : <Navigate to="/" />} />
+        <Route path="/metrics" element={user ? <LifeTimeUserMetrics /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
