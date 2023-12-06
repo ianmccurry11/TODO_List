@@ -5,7 +5,6 @@ import {
 const AuthContext = createContext();
 
 export const AuthReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case 'LOGIN':
       localStorage.setItem('user', action.payload.user);

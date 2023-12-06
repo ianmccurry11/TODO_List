@@ -18,7 +18,8 @@
         "no-underscore-dangle": "off",
         "camelcase": "off",
         "react/function-component-definition": "off",
-        "no-promise-executor-return": "off"
+        "no-promise-executor-return": "off",
+        "react/destructuring-assignment": "off"
     }
     
 }
