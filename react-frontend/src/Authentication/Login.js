@@ -35,32 +35,34 @@ const Login = () => {
   return (
     <>
       <ButtonAppBar />
-      <h1>Login</h1>
-      <form>
-        <label htmlFor="username">
-          Username
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </label>
+      <div className="container">
+        <h1>Login</h1>
+        <form>
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange}
+            />
+          </label>
 
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </label>
+          <label htmlFor="password">
+            Password
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </label>
 
-        <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
-      </form>
+          <input type="button" value="Submit" onClick={submitForm} style={{ color: 'black', backgroundColor: '#1bff80' }} />
+        </form>
+      </div>
     </>
   );
 };

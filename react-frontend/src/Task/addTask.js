@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ButtonAppBar from '../Navbar';
 import useAuthContext from '../hooks/useAuthContext';
+import '../App.css';
+
+// const API_URL_CALL = 'https://todo307.azurewebsites.net';
+const API_URL_CALL = 'http://localhost:8000';
 
 function AddTask() {
   const { user } = useAuthContext();
@@ -19,7 +23,7 @@ function AddTask() {
   async function handlePost(task) {
     try {
       console.log('made it to post function in addTasks');
-      const response = await axios.post('http://localhost:8000/tasks', task);
+      const response = await axios.post(`${API_URL_CALL}/tasks`, task);
       console.log(response);
       return response.data.users_tasks;
     } catch (error) {
@@ -126,89 +130,91 @@ function AddTask() {
 
   return (
     // display the form and the list of tasks
-    <div>
+    <div className="task-form-contents">
       <ButtonAppBar />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="taskName">
-          Task Name:
-          <input id="taskName" type="text" value={taskName} placeholder="Insert task name" onChange={(e) => setTaskName(e.target.value)} />
-        </label>
-        <br />
-        <label htmlFor="priority">
-          Insert Priority:
-          <select value={priority} placeholder="Select priority" onChange={(e) => setPriority(e.target.value)}>
-            <option value="">Select priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </label>
-        <br />
-        <label htmlFor="description">
-          Description:
-          <input id="description" type="text" value={description} placeholder="Insert description" onChange={(e) => setDescription(e.target.value)} />
-        </label>
-        <br />
-        <label htmlFor="deadline">
-          Deadline:
-          <input
-            id="deadline"
-            type="date"
-            value={deadline}
-            placeholder="Select a date"
-            onChange={(e) => setDeadline(e.target.value)}
-          />
-        </label>
-        <br />
-        <label htmlFor="category">
-          Category:
-          <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select category</option>
-            <option value="Work">Work</option>
-            <option value="School">School</option>
-            <option value="Personal">Personal</option>
-          </select>
-        </label>
-        <br />
-        <label htmlFor="location">
-          Location:
-          <input id="location" type="text" value={location} placeholder="Select location" onChange={(e) => setLocation(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit" style={{ color: 'black', backgroundColor: '#1bff80' }}>{editingTask ? 'Update Task' : 'Add Task'}</button>
-        {editingTask && <button type="button" onClick={() => setEditingTask(null)}>Cancel</button>}
-      </form>
-      {/* display the list of tasks if there are any */}
-      <table>
-        <thead>
-          <tr>
-            <th>Task Name</th>
-            <th>Priority</th>
-            <th>Description</th>
-            <th>Deadline</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task.id}>
-              <td>{task.taskName}</td>
-              <td>{task.priority}</td>
-              <td>{task.description}</td>
-              <td>{task.deadline}</td>
-              <td>{task.category}</td>
-              <td>{task.location}</td>
-              <td>
-                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleEdit(task)}>Edit</button>
-                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
-                <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
-              </td>
+      <div className="task-container">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="taskName">
+            Task Name:
+            <input id="taskName" type="text" value={taskName} placeholder="Insert task name" onChange={(e) => setTaskName(e.target.value)} />
+          </label>
+          <br />
+          <label htmlFor="priority">
+            Insert Priority:
+            <select value={priority} placeholder="Select priority" onChange={(e) => setPriority(e.target.value)}>
+              <option value="">Select priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </label>
+          <br />
+          <label htmlFor="description">
+            Description:
+            <input id="description" type="text" value={description} placeholder="Insert description" onChange={(e) => setDescription(e.target.value)} />
+          </label>
+          <br />
+          <label htmlFor="deadline">
+            Deadline:
+            <input
+              id="deadline"
+              type="date"
+              value={deadline}
+              placeholder="Select a date"
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+          </label>
+          <br />
+          <label htmlFor="category">
+            Category:
+            <select value={category} placeholder="Select category" onChange={(e) => setCategory(e.target.value)} className="dropdown">
+              <option value="">Select category</option>
+              <option value="Work">Work</option>
+              <option value="School">School</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </label>
+          <br />
+          <label htmlFor="location">
+            Location:
+            <input id="location" type="text" value={location} placeholder="Select location" onChange={(e) => setLocation(e.target.value)} />
+          </label>
+          <br />
+          <button type="submit" style={{ color: 'black', backgroundColor: '#1bff80' }}>{editingTask ? 'Update Task' : 'Add Task'}</button>
+          {editingTask && <button type="button" onClick={() => setEditingTask(null)}>Cancel</button>}
+        </form>
+        {/* display the list of tasks if there are any */}
+        <table>
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>Priority</th>
+              <th>Description</th>
+              <th>Deadline</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tasks.map((task) => (
+              <tr key={task.id}>
+                <td>{task.taskName}</td>
+                <td>{task.priority}</td>
+                <td>{task.description}</td>
+                <td>{task.deadline}</td>
+                <td>{task.category}</td>
+                <td>{task.location}</td>
+                <td>
+                  <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleEdit(task)}>Edit</button>
+                  <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleDelete(task)}>Delete</button>
+                  <button type="button" style={{ color: 'black', backgroundColor: '#1bff80' }} onClick={() => handleComplete(task)}>Complete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

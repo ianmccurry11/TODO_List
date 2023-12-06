@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import useAuthContext from '../hooks/useAuthContext';
 import ButtonAppBar from '../Navbar';
+import '../App.css';
 
 const LifeTimeUserMetrics = () => {
   const { user } = useAuthContext();

@@ -39,12 +39,7 @@ const HamburgerMenu = () => {
             </ListItem>
             <ListItem>
               <ListItemText className="toolbar-text">
-                <Link to="/registration">Registration</Link>
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText className="toolbar-text">
-                <Link to="/tasks">Tasks</Link>
+                <Link to="/tasks">Add & Edit Tasks</Link>
               </ListItemText>
             </ListItem>
             <ListItem>

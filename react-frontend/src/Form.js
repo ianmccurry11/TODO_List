@@ -41,7 +41,6 @@ function Form(props) {
           value={person.job}
           onChange={handleChange}
         />
-
       </label>
 
       <input
