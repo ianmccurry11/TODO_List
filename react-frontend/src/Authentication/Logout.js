@@ -18,6 +18,7 @@ const Login = () => {
   };
 
   const handleLogout = () => {
+    localStorage.clear();
     console.log('Context', authContext);
     console.log('logout');
     setUser({ username: '', password: '', user_id: '' });

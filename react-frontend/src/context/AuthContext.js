@@ -35,7 +35,7 @@ export function AuthContextProvider({ children }) {
       user: localStorage.getItem('user'),
       user_id: localStorage.getItem('user_id'),
     };
-    if (user) {
+    if (user && user.user && user.user_id) {
       dispatch({ type: 'LOGIN', payload: user });
     } else {
       dispatch({ type: 'LOGOUT' });

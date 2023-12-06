@@ -71,7 +71,13 @@ export default function ButtonAppBar() {
     <div className="navbar">
       <AppBar position="static" className="navbar-content">
         <Toolbar style={{ justifyContent: 'flex-start' }}>
-          <HamburgerMenu className="hamburger" />
+          {
+            user ? (
+              <HamburgerMenu className="hamburger" />
+            ) : (
+              <div />
+            )
+          }
           <Typography variant="h6" component="div" className="navbar-text">
             Mission Log
           </Typography>
