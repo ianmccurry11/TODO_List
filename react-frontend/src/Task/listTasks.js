@@ -1,9 +1,58 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ButtonAppBar from '../Navbar';
+import rocketwoutfire from '../animationImages/newrocketwoutfire.png';
+import rocketwsmoke from '../animationImages/newrocketwsmoke.png';
+import rocketwfire from '../animationImages/newrocketwfire.png';
+import nicemessage from '../animationImages/nice2-modified.png';
 
 function ListTasks() {
   const [tasks, setTasks] = useState([]);
+
+  let yeet = null; // timer for rocket fire animation
+  // Container background styling for container and animation itself
+  const myContainerStyle = {
+    width: '70%',
+    height: '50px',
+    position: 'relative',
+    background: 'black',
+    marginLeft: '20px',
+    marginRight: 'auto',
+  };
+  const myAnimationStyle = {
+    width: '50px',
+    height: '50px',
+    position: 'absolute',
+    textAlign: 'left',
+  };
+
+  const [imageSrc, setImageSrc] = React.useState(rocketwoutfire); // set image to rocketwoutfire
+
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms)); // create delay function
+
+  const rocketAnimation = async (e) => {
+    let pos = 0;
+    clearInterval(yeet);
+    setImageSrc(rocketwsmoke); // set image to rocketwsmoke
+    await delay(500); // wait .5 seconds
+    setImageSrc(rocketwfire); // set image to rocketwfire
+    const elem = document.getElementById('myAnimation');
+    function frame() {
+      if (pos === 950) {
+        clearInterval(yeet);
+        elem.style.left = '0px'; // reset position
+        setImageSrc(rocketwoutfire); // set image to rocketwfire
+      } else {
+        if (pos === 700) {
+          setImageSrc(nicemessage); // set image to nicemessage
+        }
+        pos += 5;
+        // elem.style.top = pos + 'px';
+        elem.style.left = `${pos}px`;
+      }
+    }
+    yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
+  };
 
   async function fetchAll() {
     try {
@@ -31,6 +80,7 @@ function ListTasks() {
       .then((res) => {
         const updatedTasks = tasks.filter((item) => item._id !== task._id);
         setTasks(updatedTasks);
+        rocketAnimation();
       }).catch((err) => {
         console.log(err);
       });
@@ -45,6 +95,11 @@ function ListTasks() {
   return (
     <div>
       <ButtonAppBar />
+      {/* <div id="myContainer" style={myContainerStyle}>
+        <div id="myAnimation" style={myAnimationStyle}>
+          <img src={imageSrc} alt="rocket" />
+        </div>
+      </div> */}
       <table>
         <thead>
           <tr>
