@@ -75,6 +75,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" className="navbar-text">
             Mission Log
           </Typography>
+          <Button onClick={rocketAnimation}>  </Button>
           <div id="myContainer" style={myContainerStyle}>
             <div id="myAnimation" style={myAnimationStyle}>
               <img src={imageSrc} alt="rocket" />
