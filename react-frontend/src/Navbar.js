@@ -34,36 +34,36 @@ export default function ButtonAppBar() {
     width: '50px',
     height: '50px',
     position: 'absolute',
-    textAlign: 'left'
+    textAlign: 'left',
   };
 
   const [imageSrc, setImageSrc] = React.useState(rocketwoutfire); // set image to rocketwoutfire
 
-  const delay = ms => new Promise(res => setTimeout(res, ms)); // create delay function
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms)); // create delay function
 
   const rocketAnimation = async (e) => {
     e.preventDefault(); // prof suggestion to prevent locking of events
     let pos = 0;
-    clearInterval(yeet); 
+    clearInterval(yeet);
     setImageSrc(rocketwsmoke); // set image to rocketwsmoke
     await delay(500); // wait .5 seconds
     setImageSrc(rocketwfire); // set image to rocketwfire
     const elem = document.getElementById('myAnimation');
-    yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
     function frame() {
       if (pos === 950) {
         clearInterval(yeet);
         elem.style.left = '0px'; // reset position
         setImageSrc(rocketwoutfire); // set image to rocketwfire
       } else {
-        if (pos == 700) {
+        if (pos === 700) {
           setImageSrc(nicemessage); // set image to nicemessage
         }
         pos += 5;
         // elem.style.top = pos + 'px';
-        elem.style.left = pos + 'px';
+        elem.style.left = `${pos}px`;
       }
     }
+    yeet = setInterval(frame, 10); // runs the frame function every 10 milliseconds
   };
 
   return (
