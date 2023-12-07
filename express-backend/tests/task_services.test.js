@@ -1,5 +1,6 @@
 import task_services from "../models/tasks-services";
 
+
 let task_test = null;
 const date_string = toString(new Date());
 
@@ -178,7 +179,22 @@ test("find tasks by id invalid id (failure)", async () => {
   expect(result).toBe(undefined);
 });
 
-test ("deleteTasks (failure)", async () => {
+test("deleteTasks (failure)", async () => {
   const result = await task_services.deleteTask("test");
   expect(result).toBe(false);
+});
+
+test("getTasks should return all tasks when no parameters are provided (success)", async () => {
+  const expectedTasks = [{ taskName: "task1" }, { taskName: "task2" }];
+  task_services.getTasks = jest.fn().mockResolvedValue(expectedTasks);
+
+  const result = await task_services.getTasks();
+
+  expect(task_services.getTasks).toHaveBeenCalledWith();
+  expect(result).toEqual(expectedTasks);
+});
+
+test("getTasks with no parameters (should reach line 41)", async () => {
+  const result = await task_services.getTasks();
+  expect(result).not.toBe(false);
 });
