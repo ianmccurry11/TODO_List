@@ -40,5 +40,7 @@ jobs:
       run: npm run build --if-present
     - name: Test express-backend
       run: npm test
+      env:
+        MONGODB_URI: ${{secrets.MONGODB_URI}}
     
 
