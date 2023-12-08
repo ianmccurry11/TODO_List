@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import ButtonAppBar from './Navbar';
+import '../stylesheets/App.css';
+import ButtonAppBar from '../ui_elements/Navbar';
 
 const HomePage = () => {
   const [text, setText] = useState('');

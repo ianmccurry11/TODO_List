@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useContext } from 'react';
 import useAuthContext from '../context/AuthContext';
-import ButtonAppBar from '../Navbar';
+import ButtonAppBar from '../ui_elements/Navbar';
 
 const Registration = () => {
   const authContext = useContext(useAuthContext);

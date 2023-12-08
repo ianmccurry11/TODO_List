@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuthContext from '../hooks/useAuthContext';
-import ButtonAppBar from '../Navbar';
+import ButtonAppBar from '../ui_elements/Navbar';
 import rocketwoutfire from '../animationImages/newrocketwoutfire.png';
 import rocketwsmoke from '../animationImages/newrocketwsmoke.png';
 import rocketwfire from '../animationImages/newrocketwfire.png';

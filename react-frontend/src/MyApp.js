@@ -3,16 +3,12 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
-import axios from 'axios';
-import Table from './Table';
-import App from './App';
 import LoginForm from './Authentication/Login';
-import ResponsiveAppBar from './Navbar';
 import RegistrationForm from './Authentication/Registration';
 import useAuthContext from './hooks/useAuthContext';
 import AddTask from './Task/addTask';
 import ListTasks from './Task/listTasks';
-import HomePage from './Home';
+import HomePage from './home/Home';
 import LifeTimeUserMetrics from './user_metrics/lifetime_user_metrics';
 
 function MyApp() {

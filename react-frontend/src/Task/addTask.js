@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import ButtonAppBar from '../Navbar';
+import ButtonAppBar from '../ui_elements/Navbar';
 import useAuthContext from '../hooks/useAuthContext';
-import '../App.css';
+import '../stylesheets/App.css';
 
-// const API_URL_CALL = 'https://todo307.azurewebsites.net';
 const API_URL_CALL = 'http://localhost:8000';
 
 function AddTask() {

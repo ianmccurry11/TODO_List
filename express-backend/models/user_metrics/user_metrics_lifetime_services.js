@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import TaskModel from "../tasks.js";
+import TaskModel from "../task_model/tasks.js";
 import UserMetricsModel from "./user_metrics_lifetime.js";
 
 dotenv.config();

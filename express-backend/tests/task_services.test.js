@@ -1,4 +1,4 @@
-import task_services from "../models/tasks-services";
+import task_services from "../models/task_model/tasks-services";
 import user_services from "../models/user_model/user-services";
 
 let task_test = null;

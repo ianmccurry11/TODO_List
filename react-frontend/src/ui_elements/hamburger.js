@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
-import './App.css';
+import '../stylesheets/App.css';
 
 // Your HamburgerMenu component
 const HamburgerMenu = () => {

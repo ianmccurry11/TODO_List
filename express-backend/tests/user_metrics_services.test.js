@@ -1,8 +1,7 @@
 import user_lifetime_service from "../models/user_metrics/user_metrics_lifetime_services";
 import user from "../models/user_model/user";
 import user_service from "../models/user_model/user-services";
-import task_service from "../models/tasks-services";
-import user_metrics_lifetime from "../models/user_metrics/user_metrics_lifetime";
+import task_service from "../models/task_model/tasks-services";
 
 jest.setTimeout(300000);
 

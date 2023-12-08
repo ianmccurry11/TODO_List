@@ -7,14 +7,14 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import useAuthContext from './hooks/useAuthContext';
+import useAuthContext from '../hooks/useAuthContext';
 import HamburgerMenu from './hamburger';
-import Logout from './Authentication/Logout';
-import './App.css';
-import rocketwoutfire from './animationImages/newrocketwoutfire.png';
-import rocketwsmoke from './animationImages/newrocketwsmoke.png';
-import rocketwfire from './animationImages/newrocketwfire.png';
-import nicemessage from './animationImages/nice2-modified.png';
+import Logout from '../Authentication/Logout';
+import '../stylesheets/App.css';
+import rocketwoutfire from '../animationImages/newrocketwoutfire.png';
+import rocketwsmoke from '../animationImages/newrocketwsmoke.png';
+import rocketwfire from '../animationImages/newrocketwfire.png';
+import nicemessage from '../animationImages/nice2-modified.png';
 
 let yeet = null; // timer for rocket fire animation
 
