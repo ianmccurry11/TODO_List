@@ -34,7 +34,7 @@ async function update_user_metrics(task_id, date) {
   const current_week = get_week(current_date);
   const current_month = current_date.getMonth();
   const current_year = current_date.getFullYear();
-  if (user_metrics === undefined || user_metrics === null) {
+  if (user_metrics === null) {
     // Create a new user_metrics document
     const new_user_metrics = new UserMetricsModel({
       user: owner,

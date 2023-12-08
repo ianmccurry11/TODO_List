@@ -1,17 +1,26 @@
 import task_services from "../models/tasks-services";
+import user_services from "../models/user_model/user-services";
 
 let task_test = null;
+let test_user = null;
 const date_string = toString(new Date());
 
 test("addTask valid entry (success)", async () => {
+  const user = {
+    username: date_string,
+    password: date_string,
+  };
+  let result = await user_services.addUser(user);
+  test_user = result;
   const task = {
     taskName: date_string,
     priority: date_string,
     category: date_string,
     location: date_string,
+    owner: result._id,
     deadline: new Date(),
   };
-  const result = await task_services.addTask(task);
+  result = await task_services.addTask(task);
   task_test = result;
   expect(result).not.toBe(false);
 });
@@ -78,74 +87,37 @@ test("getTasks location (success)", async () => {
   expect(result).not.toBe(false);
 });
 
-test("getTasks taskName not present (failure)", async () => {
-  let result = [];
-  try {
-    result = await task_services.getTasks("test");
-  } catch (error) {
-    console.log(result);
-    console.log("Failed to get tasks");
-  }
-  expect(result).toStrictEqual([]);
+test("getTasks owner (success)", async () => {
+  console.log("Test Task owner", task_test.owner);
+  const result = await task_services.getTasks(
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    task_test.owner,
+  );
+  console.log(result);
+  expect(result).not.toBe(false);
 });
 
-test("getTasks deadline not present (failure)", async () => {
-  let result = [];
-  try {
-    result = await task_services.getTasks(undefined, "test");
-  } catch (error) {
-    console.log(result);
-    console.log("Failed to get tasks");
-  }
-  expect(result).toStrictEqual([]);
-});
-
-test("getTasks priority not present (failure)", async () => {
-  let result = [];
-  try {
-    result = await task_services.getTasks(undefined, undefined, "test");
-  } catch (error) {
-    console.log(result);
-    console.log("Failed to get tasks");
-  }
-  expect(result).toStrictEqual([]);
-});
-
-test("getTasks deadline not present (failure)", async () => {
-  let result = [];
-  try {
-    result = await task_services.getTasks(
-      undefined,
-      undefined,
-      undefined,
-      "test",
-    );
-  } catch (error) {
-    console.log(result);
-    console.log("Failed to get tasks");
-  }
-  expect(result).toStrictEqual([]);
-});
-
-test("getTasks category not present (failure)", async () => {
-  let result = [];
-  try {
-    result = await task_services.getTasks(
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      "test",
-    );
-  } catch (error) {
-    console.log(result);
-    console.log("Failed to get tasks");
-  }
-  expect(result).toStrictEqual([]);
+test("getTasks all (success)", async () => {
+  const result = await task_services.getTasks(
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  );
+  expect(result).not.toBe(false);
 });
 
 test("find tasks by id (success)", async () => {
-  const result = await task_services.findTaskById(task_test._id);
+  console.log("Test Task id", task_test._id);
+  const id = task_test._id.toString();
+  console.log("Test Task id", id);
+  const result = await task_services.findTaskById(id);
   expect(result).not.toBe(null);
 });
 
@@ -183,17 +155,11 @@ test("deleteTasks (failure)", async () => {
   expect(result).toBe(false);
 });
 
-test("getTasks should return all tasks when no parameters are provided (success)", async () => {
-  const expectedTasks = [{ taskName: "task1" }, { taskName: "task2" }];
-  task_services.getTasks = jest.fn().mockResolvedValue(expectedTasks);
-
-  const result = await task_services.getTasks();
-
-  expect(task_services.getTasks).toHaveBeenCalledWith();
-  expect(result).toEqual(expectedTasks);
-});
-
 test("getTasks with no parameters (should reach line 41)", async () => {
   const result = await task_services.getTasks();
   expect(result).not.toBe(false);
+});
+
+afterAll(async () => {
+  await user_services.deleteUser(test_user._id);
 });

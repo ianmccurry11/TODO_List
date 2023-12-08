@@ -27,23 +27,24 @@ async function getTasks(
   // let result;
   /* Only adding search functionality for no fields or one field at a time
 	Therefore, when calling this function, only search by one parameter at a time */
-  if (taskName && !priority && !deadline && !category && !location) {
+  console.log(taskName, priority, deadline, category, location, user);
+  if (taskName !== undefined) {
     return await TaskModel.find({ taskName: taskName });
   }
-  if (!taskName && priority && !deadline && !category && !location) {
+  if (priority !== undefined) {
     return await TaskModel.find({ priority: priority });
   }
-  if (!taskName && !priority && deadline && !category && !location) {
+  if (deadline !== undefined) {
     return await TaskModel.find({ deadline: deadline });
   }
-  if (!taskName && !priority && !deadline && category && !location) {
+  if (category !== undefined) {
     return await TaskModel.find({ category: category });
   }
-  if (!taskName && !priority && !deadline && !category && location) {
-    return await TaskModel.find({ location: location });
+  if (user) {
+    return await TaskModel.findOne({ owner: user });
   }
-  if (!taskName && !priority && !deadline && !category && !location) {
-    return await TaskModel.find({ owner: user });
+  if (location !== undefined) {
+    return await TaskModel.find({ location: location });
   }
   return await TaskModel.find();
 }
@@ -96,17 +97,12 @@ async function updateTask(_id, updated_fields) {
     task_id = query._id;
   }
   let result = null;
-  try {
-    const filter = { _id: task_id };
-    const update = {
-      $set: updated_fields,
-    };
-    result = TaskModel.updateOne(filter, update);
-    return result;
-  } catch (error) {
-    console.log("Error in updateTask", error);
-    return false;
-  }
+  const filter = { _id: task_id };
+  const update = {
+    $set: updated_fields,
+  };
+  result = TaskModel.updateOne(filter, update);
+  return result;
 }
 
 export default {
