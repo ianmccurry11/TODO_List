@@ -20,7 +20,7 @@ Mission Log uses the Airbnb styleguide (found here: https://airbnb.io/javascript
 4. Type "Format on Save" into the search bar.
 5. Check the checkbox.
 
-### Mission Log Diagrams:
+## Mission Log Diagrams:
 Attached below is our [class diagrams](https://github.com/ianmccurry11/TODO_List/wiki/Class-Diagram)
 
 ## Deployment
