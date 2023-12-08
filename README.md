@@ -20,6 +20,7 @@ Mission Log uses the Airbnb styleguide (found here: https://airbnb.io/javascript
 4. Type "Format on Save" into the search bar.
 5. Check the checkbox.
 
+## Deployment
 Azure : https://todo307.azurewebsites.net/
 
 Mission Log Diagrams:
