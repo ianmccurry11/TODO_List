@@ -24,8 +24,10 @@ Mission Log uses the Airbnb styleguide (found here: https://airbnb.io/javascript
 Attached below is our [class diagrams](https://github.com/ianmccurry11/TODO_List/wiki/Class-Diagram)
 
 ## Deployment
-### Backend : https://todo307.azurewebsites.net/
-### Frontend : https://victorious-moss-0a9e8d41e.4.azurestaticapps.net/
+### Backend: 
+https://todo307.azurewebsites.net/
+### Frontend: 
+https://victorious-moss-0a9e8d41e.4.azurestaticapps.net/
 
 ### Deployment Status
 ![Main](https://github.com/ianmccurry11/TODO_List/actions/workflows/node.js.yml/badge.svg)
