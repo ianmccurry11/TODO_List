@@ -1,6 +1,6 @@
 For individuals who thrive in organized environments, Mission Log is here for you! Mission Log aims to create a fun experience for individuals looking to escape the monotony that Apple Reminders and Google Tasks has to offer. Through lifetime user metrics and rewarding UI, Mission Log helps users stay engaged and productive.
 
-Mission Log UI Prototype (Last edited Nov. 27 2023): https://www.figma.com/file/Uy3p0wY1ieKkLdHVEEZLo6/TodoList?type=design&node-id=2%3A2&mode=design&t=hnwVpbPnHHrm2bTd-1
+Mission Log UI Prototype (Last edited Nov. 27 2023): [UI Prototype](https://www.figma.com/file/Uy3p0wY1ieKkLdHVEEZLo6/TodoList?type=design&node-id=2%3A2&mode=design&t=hnwVpbPnHHrm2bTd-1)
 
 Mission Log uses the same settings for ESLint and Prettier for both the frontend and the backend.
 
