@@ -204,8 +204,10 @@ app.post("/register", (request, response) => {
 app.get("/user_metrics/:id", async (req, res) => {
   console.log("made it to user_metrics");
   const { id } = req.params;
-  const result =
-    await user_metrics_lifetime_services.get_user_metrics_lifetime(id);
+  const result = await user_metrics_lifetime_services.get_user_metrics_lifetime(
+    id,
+    new Date(),
+  );
   console.log("result", result);
   if (result === undefined || result === null)
     res.status(404).send("Damn. Resource not found.");
@@ -219,12 +221,12 @@ app.put("/tasks/:id", async (req, res) => {
   const updatedTask = req.body;
   console.log("updatedTask", updatedTask);
   if (updatedTask.completed === true) {
-    user_metrics_lifetime_services.update_user_metrics(id, () => {
+    user_metrics_lifetime_services.update_user_metrics(id, new Date(), () => {
       console.log("Updated user metrics");
     });
   }
   try {
-    const result = await tasksServices.updateTask(id, updatedTask);
+    const result = await tasksServices.updateTask(id, updatedTask, new Date());
     if (result === undefined || result === null)
       res.status(404).send("Damn. Resource not found.");
     else {

@@ -16,7 +16,14 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-async function getTasks(taskName, priority, deadline, category, location, user) {
+async function getTasks(
+  taskName,
+  priority,
+  deadline,
+  category,
+  location,
+  user,
+) {
   // let result;
   /* Only adding search functionality for no fields or one field at a time
 	Therefore, when calling this function, only search by one parameter at a time */
