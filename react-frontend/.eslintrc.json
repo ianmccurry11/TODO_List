@@ -13,13 +13,14 @@
     "rules": {
         "react/prop-types": 0,
         "react/react-in-jsx-scope": "off",
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "no-underscore-dangle": "off",
         "camelcase": "off",
         "react/function-component-definition": "off",
         "no-promise-executor-return": "off",
-        "react/destructuring-assignment": "off"
+        "react/destructuring-assignment": "off",
+        "no-console": "off"
     }
     
 }
