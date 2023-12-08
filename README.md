@@ -19,5 +19,7 @@ Setting up program to format on save:
 
 Azure : https://todo307.azurewebsites.net/
 
+Mission Log Diagrams:
+Attached below is our [class diagrams](https://github.com/ianmccurry11/TODO_List/wiki/Class-Diagram)
 
 ![Main](https://github.com/ianmccurry11/TODO_List/actions/workflows/node.js.yml/badge.svg)
