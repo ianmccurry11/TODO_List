@@ -21,9 +21,7 @@ function AddTask() {
   // function for sending a POST request to a local server
   async function handlePost(task) {
     try {
-      console.log('made it to post function in addTasks');
       const response = await axios.post(`${API_URL_CALL}/tasks`, task);
-      console.log(response);
       return response.data.users_tasks;
     } catch (error) {
       // We're not handling errors. Just logging into the console.
@@ -45,7 +43,6 @@ function AddTask() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('made it to handleSubmit');
     const user_id = localStorage.getItem('id');
     if (editingTask) {
       sendEdit({
@@ -57,7 +54,6 @@ function AddTask() {
         location,
         owner: user_id,
       });
-      console.log('made it to editing task');
       const updatedTasks = tasks.map((task) => {
         if (task.id === editingTask.id) {
           return {
@@ -115,7 +111,6 @@ function AddTask() {
     setCategory(task.category);
     setLocation(task.location);
     setEditingTask(task);
-    console.log('Update on Task', task);
   };
   // filter out the task to be deleted and setTasks to the updated list.
   const handleDelete = (task) => {
@@ -124,7 +119,6 @@ function AddTask() {
   };
   // just console log for now
   const handleComplete = (task) => {
-    console.log(task);
   };
 
   return (

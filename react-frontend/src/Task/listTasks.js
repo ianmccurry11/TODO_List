@@ -58,9 +58,7 @@ function ListTasks() {
 
   async function fetchAll() {
     try {
-      console.log(user);
       const user_id = localStorage.getItem('user_id');
-      console.log(user_id);
       const response = await axios.get('http://localhost:8000/tasks', { params: { owner: user_id } });
       return response.data.users_tasks;
     } catch (error) {

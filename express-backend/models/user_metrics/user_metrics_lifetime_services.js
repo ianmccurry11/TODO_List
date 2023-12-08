@@ -86,7 +86,6 @@ async function update_user_metrics(task_id, date) {
 }
 
 async function get_user_metrics_lifetime(user_id) {
-  console.log("user_id", user_id);
   const user_metrics = await UserMetricsModel.findOne({ user: user_id });
   if (user_metrics === null) {
     return null;

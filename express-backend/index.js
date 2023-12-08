@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tasks", async (req, res) => {
-  console.log("query", req.query);
   const { taskName } = req.query;
   const { priority } = req.query;
   const { deadline } = req.query;
@@ -68,7 +67,6 @@ app.get("/tasks/:id", async (req, res) => {
 /* Need to connect to the frontend in order to produce new users. This should 
 technically work, but I can't test it until I get the frontend working. ESLint >:(  */
 app.post("/tasks", async (req, res) => {
-  console.log("made it to post function in index.js");
   const newTask = req.body;
   const user_id = new mongoose.Types.ObjectId(req.body.owner);
   newTask.owner = user_id;
@@ -86,7 +84,6 @@ the targeted tasks */
 app.delete("/tasks/:id", async (req, res) => {
   try {
     const { id } = req.params; // or req.params.id
-    console.log("id", id);
     const successfullyDeleted = await tasksServices.deleteTask(id);
     if (!successfullyDeleted) {
       res.status(404).end("Resource Not Found");
@@ -112,7 +109,6 @@ app.post("/login", (request, response) => {
         .then((passwordCheck) => {
           // check if password matches
           if (passwordCheck === false) {
-            console.log("passwords do not match");
             return response.status(400).send({
               message: "Passwords does not match",
             });
@@ -127,7 +123,6 @@ app.post("/login", (request, response) => {
             SECRET_TOKEN_KEY,
             { expiresIn: "3d" },
           );
-          console.log(user.username, user._id, token);
           //   return success response
           return response.status(200).send({
             message: "Login Successful",
@@ -201,13 +196,11 @@ app.post("/register", (request, response) => {
 });
 
 app.get("/user_metrics/:id", async (req, res) => {
-  console.log("made it to user_metrics");
   const { id } = req.params;
   const result = await user_metrics_lifetime_services.get_user_metrics_lifetime(
     id,
     new Date(),
   );
-  console.log("result", result);
   if (result === undefined || result === null)
     res.status(404).send("Damn. Resource not found.");
   else {
@@ -218,12 +211,7 @@ app.get("/user_metrics/:id", async (req, res) => {
 app.put("/tasks/:id", async (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
-  console.log("updatedTask", updatedTask);
-  if (updatedTask.completed === true) {
-    user_metrics_lifetime_services.update_user_metrics(id, new Date(), () => {
-      console.log("Updated user metrics");
-    });
-  }
+  user_metrics_lifetime_services.update_user_metrics(id, new Date());
   try {
     const result = await tasksServices.updateTask(id, updatedTask, new Date());
     if (result === undefined || result === null)

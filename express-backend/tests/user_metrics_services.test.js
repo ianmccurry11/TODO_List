@@ -1,5 +1,4 @@
 import user_lifetime_service from "../models/user_metrics/user_metrics_lifetime_services";
-import user from "../models/user_model/user";
 import user_service from "../models/user_model/user-services";
 import task_service from "../models/task_model/tasks-services";
 
@@ -10,7 +9,6 @@ let test_task = null;
 let field = null;
 let user_fields = null;
 let task_fields = null;
-let test_user_metrics = null;
 let today = null;
 
 beforeAll(async () => {
@@ -98,7 +96,7 @@ test("update user metrics lifetime next month (success)", async () => {
 });
 
 test("update user metrics lifetime next year (success)", async () => {
-  const next_year = new Date(today.getTime() + 2*365 * 24 * 60 * 60 * 1000);
+  const next_year = new Date(today.getTime() + 2 * 365 * 24 * 60 * 60 * 1000);
   const result = await user_lifetime_service.update_user_metrics(
     test_task._id,
     next_year,
@@ -188,7 +186,7 @@ test("get_user_metrics_yearly (success)", async () => {
 });
 
 test("get_user_metrics_yearly next year (success)", async () => {
-  const next_year = new Date(today.getTime() + 2*365 * 24 * 60 * 60 * 1000);
+  const next_year = new Date(today.getTime() + 2 * 365 * 24 * 60 * 60 * 1000);
   const result = await user_lifetime_service.get_user_metrics_yearly(
     test_user._id,
     next_year,
@@ -212,6 +210,5 @@ afterAll(async () => {
   field = null;
   user_fields = null;
   task_fields = null;
-  test_user_metrics = null;
   test_user = null;
 });

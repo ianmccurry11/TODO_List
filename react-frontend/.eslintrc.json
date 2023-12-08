@@ -22,5 +22,5 @@
         "react/destructuring-assignment": "off",
         "no-console": "off"
     }
-    
+
 }

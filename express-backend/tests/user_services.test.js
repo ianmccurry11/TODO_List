@@ -3,7 +3,6 @@ import user_services from "../models/user_model/user-services";
 const field = Date();
 let test_user = null;
 test("addUser valid entry (success)", async () => {
-  console.log(field);
   const user = {
     username: field,
     password: field,

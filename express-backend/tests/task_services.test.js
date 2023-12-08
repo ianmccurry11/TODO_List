@@ -88,7 +88,6 @@ test("getTasks location (success)", async () => {
 });
 
 test("getTasks owner (success)", async () => {
-  console.log("Test Task owner", task_test.owner);
   const result = await task_services.getTasks(
     undefined,
     undefined,
@@ -97,7 +96,6 @@ test("getTasks owner (success)", async () => {
     undefined,
     task_test.owner,
   );
-  console.log(result);
   expect(result).not.toBe(false);
 });
 
@@ -114,9 +112,7 @@ test("getTasks all (success)", async () => {
 });
 
 test("find tasks by id (success)", async () => {
-  console.log("Test Task id", task_test._id);
   const id = task_test._id.toString();
-  console.log("Test Task id", id);
   const result = await task_services.findTaskById(id);
   expect(result).not.toBe(null);
 });
