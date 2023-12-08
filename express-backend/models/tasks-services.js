@@ -41,7 +41,7 @@ async function getTasks(
     return await TaskModel.find({ category: category });
   }
   if (user) {
-    return await TaskModel.findOne({ owner: user });
+    return await TaskModel.find({ owner: user });
   }
   if (location !== undefined) {
     return await TaskModel.find({ location: location });
