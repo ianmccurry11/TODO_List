@@ -23,7 +23,7 @@ Mission Log uses the Airbnb styleguide (found here: https://airbnb.io/javascript
 ## Deployment
 Azure : https://todo307.azurewebsites.net/
 
-Mission Log Diagrams:
+### Mission Log Diagrams:
 Attached below is our [class diagrams](https://github.com/ianmccurry11/TODO_List/wiki/Class-Diagram)
 
 ![Main](https://github.com/ianmccurry11/TODO_List/actions/workflows/node.js.yml/badge.svg)
