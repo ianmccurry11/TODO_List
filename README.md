@@ -1,6 +1,9 @@
 ## Project Mission
 For individuals who thrive in organized environments, Mission Log is here for you! Mission Log aims to create a fun experience for individuals looking to escape the monotony that Apple Reminders and Google Tasks has to offer. Through lifetime user metrics and rewarding UI, Mission Log helps users stay engaged and productive.
 
+### View our application: 
+https://victorious-moss-0a9e8d41e.4.azurestaticapps.net/
+
 ## Mission Log UI Prototype 
 (Last edited Nov. 27 2023): [UI Prototype](https://www.figma.com/file/Uy3p0wY1ieKkLdHVEEZLo6/TodoList?type=design&node-id=2%3A2&mode=design&t=hnwVpbPnHHrm2bTd-1)
 
@@ -26,8 +29,6 @@ Attached below is our [class diagrams](https://github.com/ianmccurry11/TODO_List
 ## Deployment
 ### Backend: 
 https://todo307.azurewebsites.net/
-### Frontend: 
-https://victorious-moss-0a9e8d41e.4.azurestaticapps.net/
 
 ### Deployment Status
 ![Main](https://github.com/ianmccurry11/TODO_List/actions/workflows/node.js.yml/badge.svg)
